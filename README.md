@@ -1,16 +1,15 @@
+# Glocus
+
+Prospecter comme Glocus péchait.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## `npm start`
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
+Runs the app in the development mode.
 
 ### TODO
 
-- menu, router & pages
 - redux with hooks modern practice
 - auth
 - addContact with Firebase
