@@ -5,6 +5,7 @@ import { Header } from '../Header/Header';
 import { Home } from '../../pages/Home/Home';
 import { Search } from '../../pages/Search/Search';
 import { Settings } from '../../pages/Settings/Settings';
+import { ContactForm } from '../../pages/ContactForm/ContactForm';
 
 // import logo from './logo.svg';
 import './App.css';
@@ -14,7 +15,6 @@ function App() {
     <Router>
       <Header />
 
-      {/* put here a container component hight order */}
       <Switch>
         <Route exact path='/'>
           <Home />
@@ -24,6 +24,9 @@ function App() {
         </Route>
         <Route path='/parametres'>
           <Settings />
+        </Route>
+        <Route path='/ajouter-ou-modifier-un-contact'>
+          <ContactForm />
         </Route>
       </Switch>
     </Router>

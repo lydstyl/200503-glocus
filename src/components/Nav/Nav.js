@@ -21,6 +21,9 @@ export const Nav = () => {
           <Link to='/'>Accueil</Link>
         </li>
         <li>
+          <Link to='/ajouter-ou-modifier-un-contact'>Ajouter</Link>
+        </li>
+        <li>
           <Link to='/rechercher'>Rechercher</Link>
         </li>
         <li>

@@ -10,7 +10,7 @@ Runs the app in the development mode.
 
 ### TODO
 
-- redux with hooks modern practice
+- redux rename state + add contact
 - auth
 - addContact with Firebase
 - PWA register && test
