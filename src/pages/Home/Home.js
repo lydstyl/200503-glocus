@@ -6,6 +6,10 @@ import WithContainer from '../../hocs/withContainer';
 // import { ADD_CONTACT } from '../../constants/ActionTypes';
 // import { spaces } from '../../utils/cssVariables';
 
+import { auth } from '../../firebase/firebase';
+
+console.log('xxx', auth);
+
 export const Home = () => {
   const contacts = useSelector((state) => state.contacts);
 
