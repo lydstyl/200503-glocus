@@ -1,25 +1,61 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 
 import WithContainer from '../../hocs/withContainer';
 
-import { Nav } from '../../components/Nav/Nav';
+import { ADD_CONTACT } from '../../constants/ActionTypes';
 
-const Form = styled.form`
-  /*color: red;*/
+import { spaces } from '../../utils/cssVariables';
+
+const Form = styled.form``;
+
+const InputField = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: ${spaces.s50};
+`;
+
+const Button = styled.button`
+  margin: ${spaces.s30} 0;
+  padding: ${spaces.s30};
 `;
 
 export const ContactForm = () => {
-  return (
-    <div>
-      <Nav />
+  const dispatch = useDispatch();
 
-      <WithContainer id='monId'>
-        <Form>
-          <h2>ContactForm</h2>
-          <input type='text' />
-        </Form>
-      </WithContainer>
-    </div>
+  const handleAddContact = (evt) => {
+    evt.preventDefault();
+
+    const contact = {};
+
+    document.querySelectorAll('input').forEach((i) => {
+      console.log(i.name, i.value);
+      const { name, value } = i;
+      contact[name] = value;
+
+      // // empty the input
+      // i.value = '';
+    });
+
+    dispatch({ type: ADD_CONTACT, payload: contact });
+  };
+
+  return (
+    <WithContainer title='ContactForm'>
+      <Form>
+        <InputField>
+          <label htmlFor='lastName'>Nom de famille</label>
+          <input name='lastName' id='lastName' type='text' />
+        </InputField>
+
+        <InputField>
+          <label htmlFor='firstName'>Prénom</label>
+          <input name='firstName' id='firstName' type='text' />
+        </InputField>
+
+        <Button onClick={handleAddContact}>Ajouter</Button>
+      </Form>
+    </WithContainer>
   );
 };

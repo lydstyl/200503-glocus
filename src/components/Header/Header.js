@@ -8,6 +8,7 @@ import { colors, spaces } from '../../utils/cssVariables';
 const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-around;
+  align-items: flex-end;
   margin-bottom: ${spaces.s80};
   padding: 0 ${spaces.s10} ${spaces.s10};
   text-align: center;

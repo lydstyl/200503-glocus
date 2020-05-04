@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
-import todos from './todos';
+import contacts from './contacts';
 // import visibilityFilter from './visibilityFilter';
 
 const rootReducer = combineReducers({
-  todos,
+  contacts,
+  // activities
+
   // visibilityFilter,
 });
 
