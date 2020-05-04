@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
 import WithContainer from '../../hocs/withContainer';
-
 import { ADD_CONTACT } from '../../constants/ActionTypes';
-
 import { spaces } from '../../utils/cssVariables';
 
 const Form = styled.form``;
@@ -30,15 +28,15 @@ export const ContactForm = () => {
     const contact = {};
 
     document.querySelectorAll('input').forEach((i) => {
-      console.log(i.name, i.value);
       const { name, value } = i;
       contact[name] = value;
 
-      // // empty the input
-      // i.value = '';
+      // empty the input
+      i.value = '';
     });
 
     dispatch({ type: ADD_CONTACT, payload: contact });
+    alert('contact ajouté');
   };
 
   return (

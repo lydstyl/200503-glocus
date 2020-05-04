@@ -1,15 +1,31 @@
 import React from 'react';
+// import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+
+import WithContainer from '../../hocs/withContainer';
+// import { ADD_CONTACT } from '../../constants/ActionTypes';
+// import { spaces } from '../../utils/cssVariables';
 
 export const Home = () => {
-  return (
-    <div>
-      <h2>Home</h2>
+  const contacts = useSelector((state) => state.contacts);
 
+  return (
+    <WithContainer title='Accueil'>
       <p>Nouveau prospect</p>
 
       <p>ou</p>
 
       <p>Liste à relancer</p>
-    </div>
+
+      {contacts.length ? (
+        contacts.map((c) => (
+          <li key={c.id}>
+            card {c.lastName} {c.firstName} {c.company}
+          </li>
+        ))
+      ) : (
+        <p>Pas de contact</p>
+      )}
+    </WithContainer>
   );
 };
