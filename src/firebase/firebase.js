@@ -15,6 +15,8 @@ firebase.initializeApp(config);
 
 export const auth = firebase.auth();
 
+// --> // import { auth } from '../../firebase/firebase';
+
 export const firestore = firebase.firestore(); // firestore is db
 
 // export const createUserProfileDocument = async (user, additionalData) => {

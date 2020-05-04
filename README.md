@@ -10,6 +10,7 @@ Runs the app in the development mode.
 
 ### TODO
 
-- auth
+- auth get user with or without thunk
+- private routes
 - addContact with Firebase
 - PWA register && test

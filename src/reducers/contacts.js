@@ -1,4 +1,8 @@
-import { ADD_CONTACT } from '../constants/ActionTypes';
+import {
+  GET_USER,
+  GET_USER_ASYNC,
+  ADD_CONTACT,
+} from '../constants/ActionTypes';
 
 const initialState = [
   {
@@ -35,6 +39,22 @@ export default function contacts(state = initialState, action) {
 
     // case DELETE_CONTACT:
     //   return state.filter((todo) => todo.id !== action.id);
+    case GET_USER:
+      newState.push(action.payload);
+      return newState;
+
+    case GET_USER_ASYNC:
+      console.log('tttt', action.payload);
+
+      setTimeout(() => {
+        // Yay! Can invoke sync or async actions with `dispatch`
+        action.payload({
+          type: GET_USER,
+          payload: 'user THUNK MAN',
+        });
+      }, 5000);
+
+      return newState;
 
     default:
       return newState;
