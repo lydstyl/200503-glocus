@@ -10,8 +10,14 @@ Runs the app in the development mode.
 
 ### TODO
 
-- auth get user with or without thunk --> https://medium.com/better-programming/https-medium-com-clairechabas-auth-with-firebase-for-react-redux-apps-from-0-to-1-104e7343521b && https://thefrugal.dev/blog/integrating-firebase-with-react-redux/
+- create user with firebase
 - private routes
 - check architecture actions in folders in store with reducers ?
 - addContact with Firebase
 - PWA register && test
+
+### Comments
+
+remove firebase because react-redux-firebase ?
+
+tester code sandbox voir si les modules fonctionnent

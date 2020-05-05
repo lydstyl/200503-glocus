@@ -7,6 +7,7 @@ import { Search } from '../../pages/Search/Search';
 import { Settings } from '../../pages/Settings/Settings';
 import { ContactForm } from '../../pages/ContactForm/ContactForm';
 
+import { Test } from '../../pages/Test/Test';
 // import logo from './logo.svg';
 import './App.css';
 
@@ -19,12 +20,19 @@ function App() {
         <Route exact path='/'>
           <Home />
         </Route>
+
+        <Route exact path='/test'>
+          <Test />
+        </Route>
+
         <Route path='/rechercher'>
           <Search />
         </Route>
+
         <Route path='/parametres'>
           <Settings />
         </Route>
+
         <Route path='/ajouter-ou-modifier-un-contact'>
           <ContactForm />
         </Route>

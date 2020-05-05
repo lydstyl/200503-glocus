@@ -20,12 +20,19 @@ export const Nav = () => {
         <li>
           <Link to='/'>Accueil</Link>
         </li>
+
         <li>
           <Link to='/ajouter-ou-modifier-un-contact'>Ajouter</Link>
         </li>
+
+        <li>
+          <Link to='/test'>Test</Link>
+        </li>
+
         <li>
           <Link to='/rechercher'>Rechercher</Link>
         </li>
+
         <li>
           <Link to='/parametres'>Paramètres</Link>
         </li>

@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
 import WithContainer from '../../hocs/withContainer';
-import { ADD_CONTACT } from '../../constants/ActionTypes';
 import { spaces } from '../../utils/cssVariables';
+
+// import { thunkCreateUser } from '../../actions/authAction';
 
 const Form = styled.form``;
 
@@ -35,7 +36,8 @@ export const ContactForm = () => {
       i.value = '';
     });
 
-    dispatch({ type: ADD_CONTACT, payload: contact });
+    // dispatch({ type: ADD_CONTACT, payload: contact });
+    // dispatch(thunkCreateUser(contact));
     alert('contact ajouté');
   };
 
