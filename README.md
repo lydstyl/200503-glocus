@@ -10,6 +10,7 @@ Runs the app in the development mode.
 
 ### TODO
 
+- add a contact with firebase
 - create user with firebase
 - private routes
 - check architecture actions in folders in store with reducers ?

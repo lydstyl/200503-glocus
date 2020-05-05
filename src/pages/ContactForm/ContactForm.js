@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 import WithContainer from '../../hocs/withContainer';
 import { spaces } from '../../utils/cssVariables';
@@ -21,7 +21,7 @@ const Button = styled.button`
 `;
 
 export const ContactForm = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleAddContact = (evt) => {
     evt.preventDefault();

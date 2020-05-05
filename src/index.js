@@ -7,6 +7,7 @@ import 'firebase/auth';
 import 'firebase/firestore'; // <- needed if using firestore
 
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import { createFirestoreInstance } from 'redux-firestore'; // <- needed if using firestore
 
 import * as serviceWorker from './serviceWorker';
 
@@ -36,11 +37,14 @@ const rrfConfig = {
 // Initialize firebase instance
 firebase.initializeApp(fbConfig);
 
+// Initialize other services on firebase instance
+firebase.firestore(); // <- needed if using firestore
+
 const rrfProps = {
   firebase,
   config: rrfConfig,
   dispatch: store.dispatch,
-  // createFirestoreInstance, // <- needed if using firestore
+  createFirestoreInstance, // <- needed if using firestore
 };
 
 render(
