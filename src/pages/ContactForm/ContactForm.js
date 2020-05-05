@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import WithContainer from '../../hocs/withContainer';
 import { spaces } from '../../utils/cssVariables';
 
-// import { thunkCreateUser } from '../../actions/authAction';
+import { thunkAddContact } from '../../actions/contactActions';
 
 const Form = styled.form``;
 
@@ -21,7 +21,7 @@ const Button = styled.button`
 `;
 
 export const ContactForm = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleAddContact = (evt) => {
     evt.preventDefault();
@@ -32,13 +32,10 @@ export const ContactForm = () => {
       const { name, value } = i;
       contact[name] = value;
 
-      // empty the input
-      i.value = '';
+      i.value = ''; // empty the input
     });
 
-    // dispatch({ type: ADD_CONTACT, payload: contact });
-    // dispatch(thunkCreateUser(contact));
-    alert('contact ajouté');
+    dispatch(thunkAddContact(contact));
   };
 
   return (
