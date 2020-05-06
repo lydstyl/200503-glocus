@@ -1,4 +1,4 @@
-import { ADD_CONTACT } from '../constants/ActionTypes';
+// import { ADD_CONTACT } from '../constants/ActionTypes';
 
 const initialState = [
   {
@@ -28,14 +28,11 @@ const initialState = [
 ];
 
 export default function contacts(state = initialState, action) {
-  const newState = [...state];
-
   switch (action.type) {
-    case ADD_CONTACT:
-      newState.push(action.payload);
-      return newState;
+    case 'ADD_CONTACT':
+      return [...state, action.contact];
 
     default:
-      return newState;
+      return state;
   }
 }

@@ -2,18 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
-import WithContainer from '../../hocs/withContainer';
 import { spaces } from '../../utils/cssVariables';
-
 import { thunkAddContact } from '../../actions/contactActions';
+import WithContainer from '../../hocs/withContainer';
+import { InputField } from '../../components/InputField/InputField';
 
 const Form = styled.form``;
-
-const InputField = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: ${spaces.s50};
-`;
 
 const Button = styled.button`
   margin: ${spaces.s30} 0;
@@ -41,38 +35,20 @@ export const ContactForm = () => {
   return (
     <WithContainer title='Ajouter ou modifier un contact'>
       <Form>
-        <InputField>
-          <label htmlFor='lastName'>Nom de famille</label>
-          <input name='lastName' id='lastName' type='text' />
-        </InputField>
+        <InputField name='lastName' label='Nom de famille' />
+        <InputField name='firstName' label='Prénom' />
+        <InputField name='company' label='Entreprise' />
 
-        <InputField>
-          <label htmlFor='firstName'>Prénom</label>
-          <input name='firstName' id='firstName' type='text' />
-        </InputField>
+        {/* <InputField name='quality' label='Qualité' /> */}
+
+        {/* <InputField name='description' label='description' /> */}
+
+        {/* <InputField name='phone' label='Téléphone' /> */}
+        {/* <InputField name='email' label='E-mail' /> */}
+        {/* <InputField name='linkedin' label='Linkedin' /> */}
 
         <Button onClick={handleAddContact}>Ajouter</Button>
       </Form>
-
-      <p>les champs à ajouter</p>
-      <pre>
-        {JSON.stringify(
-          {
-            id: '1',
-            lastName: 'BRUN',
-            firstName: 'Gabriel',
-            company: 'DEV NORD',
-            quality: 'idéale', // mauvaise, bonne, idéale
-            description: 'ok télétravail; ok 80%;',
-            phone: '07 81 15 45 03',
-            email: 'lydstyl@gmail.com',
-            linkedin: 'https://fr.linkedin.com/in/gabrielbrun',
-            activities: ['id1'],
-          },
-          null,
-          2
-        )}
-      </pre>
     </WithContainer>
   );
 };

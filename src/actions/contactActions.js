@@ -3,22 +3,27 @@ export const thunkAddContact = (contact) => {
     const firebase = getFirebase();
     const firestore = firebase.firestore();
 
-    const userId = getState().firebase.auth.uid;
+    contact.userId = getState().firebase.auth.uid;
+    contact.createdAt = new Date();
+    contact.activities = [];
 
     firestore
       .collection('contacts')
-      .add({
-        ...contact,
-        userId,
-        createdAt: new Date(),
-      })
+      .add(contact)
       .then((docRef) => {
         console.log('Document written with ID: ', docRef.id);
-        //dispatch({ type: 'ADD_CONTACT_SUCCESS' });
+        contact.contactId = docRef.id;
+
+        dispatch(addContact(contact));
       })
       .catch((error) => {
         console.error('Error adding document: ', error);
         //dispatch({ type: 'ADD_CONTACT_ERROR' }, err);
       });
   };
+};
+
+const addContact = (contact) => {
+  alert('Contact ajouté à la base de données.');
+  return { type: 'ADD_CONTACT', contact };
 };
