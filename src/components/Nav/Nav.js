@@ -31,10 +31,6 @@ export const Nav = () => {
         </li>
 
         <li>
-          <Link to='/ajouter-ou-modifier-un-contact'>Ajouter</Link>
-        </li>
-
-        <li>
           <Link to='/rechercher'>Rechercher</Link>
         </li>
 

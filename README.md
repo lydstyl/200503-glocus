@@ -11,6 +11,7 @@ Runs the app in the development mode.
 ### TODO
 
 - menu
+- button component
 - check architecture actions in folders in store with reducers ?
 - sign in, sign up, forgot password --> dans la page Login formulaire e-mail mot de passe et bouton [se connecter] et [ou créer un compte] et [j\'ai oublié mont mot de passe]
 - other features

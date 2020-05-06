@@ -11,7 +11,11 @@ export const Home = () => {
 
   return (
     <WithContainer title='Accueil'>
-      <p>Nouveau prospect</p>
+      <p>
+        <Link to='/ajouter-ou-modifier-un-contact'>
+          Ajouter un nouveau prospect
+        </Link>
+      </p>
 
       <p>ou</p>
 
