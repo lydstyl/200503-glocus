@@ -1,6 +1,9 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { thunkSignOut } from '../../actions/authAction';
 
 import { colors } from '../../utils/cssVariables';
 
@@ -14,6 +17,12 @@ const Ul = styled.ul`
 `;
 
 export const Nav = () => {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(thunkSignOut());
+  };
+
   return (
     <nav>
       <Ul>
@@ -26,10 +35,6 @@ export const Nav = () => {
         </li>
 
         <li>
-          <Link to='/test'>Test</Link>
-        </li>
-
-        <li>
           <Link to='/rechercher'>Rechercher</Link>
         </li>
 
@@ -37,6 +42,8 @@ export const Nav = () => {
           <Link to='/parametres'>Paramètres</Link>
         </li>
       </Ul>
+
+      <button onClick={handleLogout}>logout</button>
     </nav>
   );
 };

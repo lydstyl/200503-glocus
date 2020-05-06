@@ -2,12 +2,14 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { Header } from '../Header/Header';
+import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
+
 import { Home } from '../../pages/Home/Home';
 import { Search } from '../../pages/Search/Search';
 import { Settings } from '../../pages/Settings/Settings';
 import { ContactForm } from '../../pages/ContactForm/ContactForm';
 
-import { Test } from '../../pages/Test/Test';
+import { Login } from '../../pages/Login/Login';
 // import logo from './logo.svg';
 import './App.css';
 
@@ -17,25 +19,25 @@ function App() {
       <Header />
 
       <Switch>
-        <Route exact path='/'>
+        <Route path='/login'>
+          <Login />
+        </Route>
+
+        <PrivateRoute exact path='/'>
           <Home />
-        </Route>
+        </PrivateRoute>
 
-        <Route exact path='/test'>
-          <Test />
-        </Route>
-
-        <Route path='/rechercher'>
+        <PrivateRoute path='/rechercher'>
           <Search />
-        </Route>
+        </PrivateRoute>
 
-        <Route path='/parametres'>
+        <PrivateRoute path='/parametres'>
           <Settings />
-        </Route>
+        </PrivateRoute>
 
-        <Route path='/ajouter-ou-modifier-un-contact'>
+        <PrivateRoute path='/ajouter-ou-modifier-un-contact'>
           <ContactForm />
-        </Route>
+        </PrivateRoute>
       </Switch>
     </Router>
   );

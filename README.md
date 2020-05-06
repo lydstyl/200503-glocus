@@ -10,8 +10,8 @@ Runs the app in the development mode.
 
 ### TODO
 
+- sign in, sign up, forgot password
 - create user with firebase
-- private routes
 - check architecture actions in folders in store with reducers ?
 - addContact with Firebase
 - PWA register && test
