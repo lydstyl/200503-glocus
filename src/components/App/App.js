@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { Header } from '../Header/Header';
@@ -13,7 +14,13 @@ import { Login } from '../../pages/Login/Login';
 // import logo from './logo.svg';
 import './App.css';
 
+import { thunkOnAuthStateChanged } from '../../actions/authAction';
+
 function App() {
+  const dispatch = useDispatch();
+
+  dispatch(thunkOnAuthStateChanged());
+
   return (
     <Router>
       <Header />

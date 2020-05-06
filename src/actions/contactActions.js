@@ -28,3 +28,36 @@ const addContact = (contact) => {
   alert('Contact ajouté à la base de données.');
   return { type: 'ADD_CONTACT', contact };
 };
+
+export const thunkGetContact = () => {
+  return (dispatch, getState, getFirebase) => {
+    const firebase = getFirebase();
+    const firestore = firebase.firestore();
+
+    const contacts = [];
+
+    firestore
+      .collection('contacts')
+      .get() // todo where uid === uid
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          console.log(`${doc.id} => ${doc.data()}`, doc.data());
+
+          const contact = { id: doc.id, ...doc.data() };
+
+          contacts.push(contact);
+        });
+
+        console.log(`contacts =>`, contacts);
+
+        dispatch(getContact(contacts));
+
+        // TODO catch, dispatch and toast (make a thunk for this with set time out) success and error
+      });
+  };
+};
+
+const getContact = (contacts) => {
+  alert('Contacts récupérés de la base de données.');
+  return { type: 'GET_CONTACT', contacts };
+};

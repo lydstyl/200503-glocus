@@ -1,19 +1,22 @@
-// const loading = () => {
-//   return {
-//     type: 'LOADING',
-//   };
-// };
+import { thunkGetContact } from './contactActions';
 
-const createUserAsnc = (user) => {
-  return { type: 'CREATE_USER', value: user };
-};
+export const thunkOnAuthStateChanged = () => {
+  // return (dispatch, getState, { getFirebase }) => {
+  return (dispatch, getState, getFirebase) => {
+    const firebase = getFirebase();
 
-export const thunkCreateUser = (user) => {
-  return (dispach) => {
-    //dispach(loading());
-    setTimeout(() => {
-      dispach(createUserAsnc(user));
-    }, 5000);
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        console.log(`user =>`, user);
+
+        dispatch(thunkGetContact());
+
+        // TODO we ill need to get ACTIVITIES
+        // TODO set loading, dispatch and toast success and errors for every thunks
+      } else {
+        alert("Il n'y a pas d'utilisateur connecté.");
+      }
+    });
   };
 };
 
