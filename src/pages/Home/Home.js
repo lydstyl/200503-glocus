@@ -1,6 +1,7 @@
 import React from 'react';
-// import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+// import styled from 'styled-components';
 
 import WithContainer from '../../hocs/withContainer';
 // import { spaces } from '../../utils/cssVariables';
@@ -20,6 +21,7 @@ export const Home = () => {
         contacts.map((c) => (
           <li key={c.id}>
             card {c.lastName} {c.firstName} {c.company}
+            <Link to={`/contact/${c.id}`}>Détail</Link>
           </li>
         ))
       ) : (

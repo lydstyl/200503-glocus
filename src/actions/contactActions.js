@@ -31,6 +31,9 @@ const addContact = (contact) => {
 
 export const thunkGetContact = () => {
   return (dispatch, getState, getFirebase) => {
+    const state = getState();
+    const { uid } = state.firebase.auth;
+
     const firebase = getFirebase();
     const firestore = firebase.firestore();
 
@@ -38,7 +41,8 @@ export const thunkGetContact = () => {
 
     firestore
       .collection('contacts')
-      .get() // todo where uid === uid
+      .where('userId', '==', uid)
+      .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           console.log(`${doc.id} => ${doc.data()}`, doc.data());
@@ -60,4 +64,28 @@ export const thunkGetContact = () => {
 const getContact = (contacts) => {
   alert('Contacts récupérés de la base de données.');
   return { type: 'GET_CONTACT', contacts };
+};
+
+export const thunkDeleteContact = (id) => {
+  return (dispatch, getState, getFirebase) => {
+    const firebase = getFirebase();
+    const firestore = firebase.firestore();
+
+    firestore
+      .collection('contacts')
+      .doc(id)
+      .delete()
+      .then(function () {
+        dispatch(deleteContact(id));
+        // delete activities docs here or not if only contacts
+      })
+      .catch(function (error) {
+        console.error('Error removing document: ', error);
+      });
+  };
+};
+
+const deleteContact = (id) => {
+  alert('Contact supprimé de la base de données.');
+  return { type: 'DELETE_CONTACT', id };
 };

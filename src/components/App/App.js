@@ -9,6 +9,7 @@ import { Home } from '../../pages/Home/Home';
 import { Search } from '../../pages/Search/Search';
 import { Settings } from '../../pages/Settings/Settings';
 import { ContactForm } from '../../pages/ContactForm/ContactForm';
+import { ContactPage } from '../../pages/ContactPage/ContactPage';
 
 import { Login } from '../../pages/Login/Login';
 // import logo from './logo.svg';
@@ -44,6 +45,10 @@ function App() {
 
         <PrivateRoute path='/ajouter-ou-modifier-un-contact'>
           <ContactForm />
+        </PrivateRoute>
+
+        <PrivateRoute path='/contact/:id'>
+          <ContactPage />
         </PrivateRoute>
       </Switch>
     </Router>

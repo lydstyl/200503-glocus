@@ -10,7 +10,6 @@ Runs the app in the development mode.
 
 ### TODO
 
-- remove a contact
 - menu
 - check architecture actions in folders in store with reducers ?
 - sign in, sign up, forgot password --> dans la page Login formulaire e-mail mot de passe et bouton [se connecter] et [ou créer un compte] et [j\'ai oublié mont mot de passe]
@@ -19,8 +18,6 @@ Runs the app in the development mode.
 
 ### Comments
 
-remove firebase because react-redux-firebase ?
-
 tester code sandbox voir si les modules fonctionnent
 
 firebase database vs firestore ?
@@ -28,5 +25,3 @@ firebase database vs firestore ?
 https://github.com/prescottprue/react-redux-firebase
 
 https://github.com/iamshaunjp/React-Redux-Firebase-App/blob/lesson-39/marioplan/src/store/actions/projectActions.js
-
-https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithemailandpassword

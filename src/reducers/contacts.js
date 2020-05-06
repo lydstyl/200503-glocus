@@ -10,6 +10,9 @@ export default function contacts(state = initialState, action) {
     case 'GET_CONTACT':
       return action.contacts;
 
+    case 'DELETE_CONTACT':
+      return [...state.filter((contact) => contact.id !== action.id)];
+
     default:
       return state;
   }
