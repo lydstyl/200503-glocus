@@ -20,9 +20,19 @@ export const ContactForm = () => {
   const handleAddContact = (evt) => {
     evt.preventDefault();
 
+    const form = document.querySelector('form');
+
+    // var isValid = form.reportValidity();
+
+    // //form.checkValidity();
+    // form.reportValidity(); // todo find why this is not working
+    // ChromeSamples.setStatus(
+    //   'The form ' + (isValid ? 'is' : 'is not') + ' valid.'
+    // );
+
     const contact = {};
 
-    document.querySelectorAll('input').forEach((i) => {
+    form.querySelectorAll('input').forEach((i) => {
       const { name, value } = i;
       contact[name] = value;
 
@@ -35,17 +45,55 @@ export const ContactForm = () => {
   return (
     <WithContainer title='Ajouter ou modifier un contact'>
       <Form>
-        <InputField name='lastName' label='Nom de famille' />
-        <InputField name='firstName' label='Prénom' />
+        <InputField
+          name='lastName'
+          label='Nom de famille'
+          placeholder='DUPOND'
+        />
+        <InputField name='firstName' label='Prénom' placeholder='Jean' />
         <InputField name='company' label='Entreprise' />
 
-        {/* <InputField name='quality' label='Qualité' /> */}
+        <InputField
+          name='quality'
+          label='Qualité'
+          type='range'
+          min='0'
+          max='2'
+          step='1'
+        />
 
-        {/* <InputField name='description' label='description' /> */}
+        <InputField
+          name='description'
+          label='description'
+          type='textarea'
+          rows='5'
+          defaultValue='Informations importantes: potentiel fort; probablement le client idéal; etc.'
+        />
 
-        {/* <InputField name='phone' label='Téléphone' /> */}
-        {/* <InputField name='email' label='E-mail' /> */}
-        {/* <InputField name='linkedin' label='Linkedin' /> */}
+        <InputField
+          name='phone'
+          label='Téléphone'
+          type='tel'
+          pattern='\+?[0-9]{0,2}([0-9]\s?){10,}'
+          placeholder='01 23 45 67 89'
+        />
+
+        <InputField
+          name='email'
+          label='E-mail'
+          type='email'
+          pattern='.+@.+\.[a-z]{2,3}'
+          //size='30'
+          placeholder='example@truc.com'
+        />
+
+        <InputField
+          name='linkedin'
+          label='Linkedin'
+          type='url'
+          pattern='https://.*'
+          placeholder='https://example.com'
+        />
 
         <Button onClick={handleAddContact}>Ajouter</Button>
       </Form>

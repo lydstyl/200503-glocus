@@ -5,6 +5,7 @@ export const thunkAddContact = (contact) => {
 
     contact.userId = getState().firebase.auth.uid;
     contact.createdAt = new Date();
+    contact.editedAt = new Date();
     contact.activities = [];
 
     firestore
