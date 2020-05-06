@@ -39,7 +39,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <WithContainer title='ContactForm'>
+    <WithContainer title='Ajouter ou modifier un contact'>
       <Form>
         <InputField>
           <label htmlFor='lastName'>Nom de famille</label>
@@ -53,6 +53,26 @@ export const ContactForm = () => {
 
         <Button onClick={handleAddContact}>Ajouter</Button>
       </Form>
+
+      <p>les champs à ajouter</p>
+      <pre>
+        {JSON.stringify(
+          {
+            id: '1',
+            lastName: 'BRUN',
+            firstName: 'Gabriel',
+            company: 'DEV NORD',
+            quality: 'idéale', // mauvaise, bonne, idéale
+            description: 'ok télétravail; ok 80%;',
+            phone: '07 81 15 45 03',
+            email: 'lydstyl@gmail.com',
+            linkedin: 'https://fr.linkedin.com/in/gabrielbrun',
+            activities: ['id1'],
+          },
+          null,
+          2
+        )}
+      </pre>
     </WithContainer>
   );
 };

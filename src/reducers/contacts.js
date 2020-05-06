@@ -11,6 +11,7 @@ const initialState = [
     phone: '07 81 15 45 03',
     email: 'lydstyl@gmail.com',
     linkedin: 'https://fr.linkedin.com/in/gabrielbrun',
+    activities: ['id1'],
   },
   {
     id: '2',
@@ -22,6 +23,7 @@ const initialState = [
     phone: '07 81 15 45 03',
     email: 'lydstyl@gmail.com',
     linkedin: 'https://fr.linkedin.com/in/gabrielbrun',
+    activities: ['id2', 'id3'],
   },
 ];
 
