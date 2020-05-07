@@ -24,22 +24,24 @@ export const Nav = () => {
   };
 
   return (
-    <nav>
-      <Ul>
-        <li>
-          <Link to='/'>Accueil</Link>
-        </li>
+    <Ul className='menu'>
+      <li>
+        <Link to='/'>Accueil</Link>
+      </li>
 
-        <li>
-          <Link to='/rechercher'>Rechercher</Link>
-        </li>
+      <li>
+        <Link to='/rechercher'>Rechercher</Link>
+      </li>
 
-        <li>
-          <Link to='/parametres'>Paramètres</Link>
-        </li>
-      </Ul>
+      <li>
+        <Link to='/parametres'>Paramètres</Link>
+      </li>
 
-      <button onClick={handleLogout}>logout</button>
-    </nav>
+      <li>
+        <a href='!#' onClick={handleLogout}>
+          Se déconnecter
+        </a>
+      </li>
+    </Ul>
   );
 };

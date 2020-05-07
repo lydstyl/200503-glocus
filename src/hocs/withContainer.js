@@ -5,7 +5,7 @@ import { spaces } from '../utils/cssVariables';
 
 const Main = styled.main`
   max-width: 320px;
-  margin: auto;
+  margin: ${spaces.s50} auto;
 
   h2 {
     font-size: 2.4rem;
