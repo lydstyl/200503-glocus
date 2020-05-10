@@ -1,12 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import { thunkDeleteContact } from '../../actions/contactActions';
 import WithContainer from '../../hocs/withContainer';
 
 export const ContactPage = () => {
   const { id } = useParams();
+  const history = useHistory();
 
   const contacts = useSelector((state) => state.contacts);
   const contact = contacts.filter((c) => c.id === id)[0];
@@ -22,13 +23,19 @@ export const ContactPage = () => {
     'linkedin',
     'activities',
   ];
+
   toDestructure.forEach((varName) => {
-    if (contact[varName]) {
-      c[varName] = contact[varName];
-    } else {
-      c[varName] = `pas de ${varName}`;
-    }
+    c[varName] = `pas de ${varName}`;
   });
+
+  if (contact) {
+    toDestructure.forEach((varName) => {
+      if (contact[varName]) {
+        c[varName] = contact[varName];
+      }
+    });
+  }
+
   const {
     firstName,
     lastName,
@@ -44,6 +51,8 @@ export const ContactPage = () => {
   const dispatch = useDispatch();
   const handleDeleteContact = () => {
     dispatch(thunkDeleteContact(id));
+
+    history.push('/');
   };
 
   return (

@@ -76,6 +76,8 @@ export const thunkDeleteContact = (id) => {
       .doc(id)
       .delete()
       .then(function () {
+        alert('Contact supprimé de la base de données.');
+
         dispatch(deleteContact(id));
         // delete activities docs here or not if only contacts
       })
@@ -86,6 +88,5 @@ export const thunkDeleteContact = (id) => {
 };
 
 const deleteContact = (id) => {
-  alert('Contact supprimé de la base de données.');
   return { type: 'DELETE_CONTACT', id };
 };
