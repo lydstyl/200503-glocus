@@ -5,7 +5,7 @@ import { Menu } from './Menu';
 import { Nav } from '../Nav/Nav';
 import { colors } from '../../utils/cssVariables';
 
-export const HeaderWrapper = styled.div`
+const HeaderWrapper = styled.div`
   height: 70px;
   background: linear-gradient(to left, ${colors.dark}, ${colors.primary});
   border-radius: 0;
@@ -13,6 +13,25 @@ export const HeaderWrapper = styled.div`
   .menu-wrapper {
     max-width: 768px;
     margin: auto;
+
+    .menu li {
+      a {
+        margin: 0;
+        padding: 0;
+        color: ${colors.textOnP};
+      }
+
+      :hover {
+        background-color: ${colors.secondary};
+        a {
+          color: ${colors.textOnS};
+        }
+      }
+    }
+  }
+
+  a {
+    color: white;
   }
 `;
 

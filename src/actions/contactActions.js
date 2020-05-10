@@ -62,7 +62,7 @@ export const thunkGetContact = () => {
 };
 
 const getContact = (contacts) => {
-  alert('Contacts récupérés de la base de données.');
+  // alert('Contacts récupérés de la base de données.');
   return { type: 'GET_CONTACT', contacts };
 };
 
