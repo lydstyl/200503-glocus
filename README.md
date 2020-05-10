@@ -1,8 +1,8 @@
 # Glocus
 
-Prospecter comme Glocus péchait.
+Prospecter comme Glocus péchait !
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Webapp under construction [Glocus](https://glocus.netlify.app).
 
 ## `npm start`
 
