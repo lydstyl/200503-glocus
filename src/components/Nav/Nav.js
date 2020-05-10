@@ -19,7 +19,8 @@ const Ul = styled.ul`
 export const Nav = () => {
   const dispatch = useDispatch();
 
-  const handleLogout = () => {
+  const handleLogout = (evt) => {
+    evt.preventDefault();
     dispatch(thunkSignOut());
   };
 

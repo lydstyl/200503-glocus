@@ -45,6 +45,11 @@ export const thunkSignInWithEmailAndPassword = (email, password) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
+      // .then((result) => {
+      //   console.log(result);
+
+      //   alert(`Utilisateur ${email} connecté.`);
+      // })
       .catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -55,6 +60,52 @@ export const thunkSignInWithEmailAndPassword = (email, password) => {
           alert(errorMessage);
         }
         console.log(error);
+      });
+  };
+};
+
+export const thunkCreateUserWithEmailAndPassword = (email, password) => {
+  return (dispatch, getState, getFirebase) => {
+    const firebase = getFirebase();
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        console.log(result);
+
+        alert(`Utilisateur ${email} créé.`);
+      })
+      .catch(function (error) {
+        // Handle Errors here.
+        // var errorCode = error.code;
+        // ...
+
+        console.log(error);
+        alert(error.message);
+      });
+  };
+};
+
+export const thunkSendPasswordResetEmail = (email) => {
+  console.log('xxx', email);
+
+  return (dispatch, getState, getFirebase) => {
+    const firebase = getFirebase();
+
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(function () {
+        // Password reset email sent.
+        //console.log(result);
+
+        alert(`E-mail envoyé à ${email}.`);
+      })
+      .catch(function (error) {
+        // Error occurred. Inspect error.code.
+        console.log(error);
+        alert(error.message);
       });
   };
 };
