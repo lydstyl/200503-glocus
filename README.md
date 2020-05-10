@@ -10,8 +10,8 @@ Runs the app in the development mode.
 
 ### TODO
 
+- QR Code vcard http://jsfiddle.net/totoe/vy2GL/
 - contact CRUD
-  - D
   - U
 - search contact
 - PWA register && test
