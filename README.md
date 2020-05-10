@@ -10,10 +10,6 @@ Runs the app in the development mode.
 
 ### TODO
 
-- sign in
-- sign up
-- forgot password
-
 - contact CRUD
   - D
   - U
