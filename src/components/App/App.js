@@ -32,10 +32,19 @@ const StyledAppWrapper = styled.div`
     color: ${colors.textOnS};
   }
 
+  input,
+  textarea {
+    padding: 0 ${spaces.s6};
+  }
+
+  textarea {
+    box-shadow: inset 1px 2px 1px 0px rgba(0, 0, 0, 0.6);
+  }
+
   button,
   input[type='submit'] {
-    margin: 10px 10px;
-    padding: 10px;
+    margin: ${spaces.s30} 0 ${spaces.s30} ${spaces.s30};
+    padding: ${spaces.s30};
     background-color: ${colors.secondary};
     color: ${colors.textOnS};
     border: none;

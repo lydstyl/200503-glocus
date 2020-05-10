@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { Menu } from './Menu';
@@ -36,13 +37,15 @@ const HeaderWrapper = styled.div`
 `;
 
 export const Header = () => {
+  const email = useSelector((state) => state.firebase.auth.email);
+
   return (
     <HeaderWrapper>
       <div className='menu-wrapper'>
         <Menu className='top-nav'>
           <div className='logo-box'>
             <h1>Glocus</h1>
-            <p>Prospectez zen</p>
+            <p>Prospectez zen {email}</p>
           </div>
           <input id='menu-toggle' type='checkbox' />
           <label className='menu-button-container' htmlFor='menu-toggle'>
