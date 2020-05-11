@@ -53,6 +53,12 @@ export const Menu = styled.header`
   .menu > li {
     margin: 0 1rem;
     border-radius: 0;
+
+    a:hover {
+      color: inherit;
+      background-color: inherit;
+    }
+  }
   }
 
   .menu-button-container {

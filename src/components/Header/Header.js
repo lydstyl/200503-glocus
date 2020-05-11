@@ -15,15 +15,21 @@ const HeaderWrapper = styled.div`
     max-width: 768px;
     margin: auto;
 
-    .menu li {
-      a {
-        margin: 0;
-        padding: 0;
-        color: ${colors.textOnP};
+    .menu {
+      li {
+        z-index: 10;
+        :hover {
+          background-color: ${colors.secondary};
+          color: ${colors.textOnS};
+        }
+        a {
+          margin: 0;
+          padding: 0;
+          color: ${colors.textOnP};
+        }
       }
 
-      :hover {
-        background-color: ${colors.secondary};
+      li:hover {
         a {
           color: ${colors.textOnS};
         }
