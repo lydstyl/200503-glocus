@@ -1,10 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import QRCode from 'qrcode.react';
+import styled from 'styled-components';
 
 import { thunkDeleteContact } from '../../actions/contactActions';
 import WithContainer from '../../hocs/withContainer';
+
+const Activity = styled.textarea`
+  width: 100%;
+`;
 
 export const ContactPage = () => {
   const { id } = useParams();
@@ -32,6 +37,15 @@ export const ContactPage = () => {
 
     history.push('/');
   };
+  const handleUpdateContact = () => {
+    // dispatch(thunkDeleteContact(id));
+    // history.push('/');
+  };
+
+  const handleAddactivity = () => {
+    // dispatch(thunkDeleteContact(id));
+    // history.push('/');
+  };
 
   return (
     <WithContainer
@@ -56,7 +70,35 @@ export const ContactPage = () => {
         </a>
       </p>
 
+      <button onClick={handleUpdateContact}>Modifier</button>
+      <Link to='/contact/:id/modifier'>Accueil</Link>
+      {/* db.collection("cities").doc("LA").set({
+    name: "Los Angeles",
+    state: "CA",
+    country: "USA"
+})
+.then(function() {
+    console.log("Document successfully written!");
+})
+.catch(function(error) {
+    console.error("Error writing document: ", error);
+}); */}
+
       <h3>Activités</h3>
+
+      <button onClick={handleAddactivity}>Ajouter</button>
+
+      <p>
+        Au click ou au hover sur une activité faire apparaitre les boutons
+        Sauver et Supprimer
+      </p>
+
+      <div className='activities'>
+        <Activity name='activity' id='' rows='4'></Activity>
+        <Activity name='activity' id='' rows='4'></Activity>
+        <Activity name='activity' id='' rows='4'></Activity>
+      </div>
+
       <pre> {JSON.stringify(activities, null, 4)}</pre>
 
       <QRCode
@@ -72,7 +114,7 @@ END:VCARD`}
 
       <pre>Debug : {JSON.stringify(contact, null, 4)}</pre>
 
-      <button onClick={handleDeleteContact}>Supprimer le contact</button>
+      <button onClick={handleDeleteContact}>Supprimer tout</button>
     </WithContainer>
   );
 };

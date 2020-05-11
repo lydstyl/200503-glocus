@@ -13,6 +13,15 @@ export default function contacts(state = initialState, action) {
     case 'DELETE_CONTACT':
       return [...state.filter((contact) => contact.id !== action.id)];
 
+    case 'SET_CONTACT':
+      return [
+        ...state.map((contact) => {
+          if (contact.id === action.id) {
+            return action.contact;
+          }
+        }),
+      ];
+
     default:
       return state;
   }
