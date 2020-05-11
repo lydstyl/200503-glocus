@@ -4,7 +4,10 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import QRCode from 'qrcode.react';
 import styled from 'styled-components';
 
-import { thunkDeleteContact } from '../../actions/contactActions';
+import {
+  thunkDeleteContact,
+  thunkAddactivity,
+} from '../../actions/contactActions';
 import WithContainer from '../../hocs/withContainer';
 
 const Activity = styled.textarea`
@@ -45,6 +48,10 @@ export const ContactPage = () => {
   const handleAddactivity = () => {
     // dispatch(thunkDeleteContact(id));
     // history.push('/');
+
+    const contactId = id;
+
+    dispatch(thunkAddactivity(contactId));
   };
 
   return (
@@ -72,17 +79,6 @@ export const ContactPage = () => {
 
       <button onClick={handleUpdateContact}>Modifier</button>
       <Link to='/contact/:id/modifier'>Accueil</Link>
-      {/* db.collection("cities").doc("LA").set({
-    name: "Los Angeles",
-    state: "CA",
-    country: "USA"
-})
-.then(function() {
-    console.log("Document successfully written!");
-})
-.catch(function(error) {
-    console.error("Error writing document: ", error);
-}); */}
 
       <h3>Activités</h3>
 

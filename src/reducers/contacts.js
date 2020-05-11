@@ -19,6 +19,7 @@ export default function contacts(state = initialState, action) {
           if (contact.id === action.id) {
             return action.contact;
           }
+          return contact;
         }),
       ];
 

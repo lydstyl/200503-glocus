@@ -1,3 +1,4 @@
+// CONTACT
 export const thunkAddContact = (contact) => {
   return (dispatch, getState, getFirebase) => {
     const firebase = getFirebase();
@@ -89,4 +90,66 @@ export const thunkDeleteContact = (id) => {
 
 const deleteContact = (id) => {
   return { type: 'DELETE_CONTACT', id };
+};
+
+export const thunkSetContact = (id, contact) => {
+  return (dispatch, getState, getFirebase) => {
+    const firebase = getFirebase();
+    const firestore = firebase.firestore();
+
+    firestore
+      .collection('contacts')
+      .doc(id)
+      .set(contact)
+      .then(function () {
+        alert('Contact modifié dans la base de données.');
+
+        dispatch(setContact(id, contact));
+      })
+      .catch(function (error) {
+        console.error('Error writing document: ', error);
+      });
+  };
+};
+
+const setContact = (id) => {
+  return { type: 'SET_CONTACT', id };
+};
+
+// ACTIVITY
+export const thunkAddactivity = (contactId) => {
+  return (dispatch, getState, getFirebase) => {
+    const firebase = getFirebase();
+    const firestore = firebase.firestore();
+
+    const activity = {
+      createdAt: new Date(),
+      editedAt: new Date(),
+      contactId,
+      text: 'ajouter votre activité ici !',
+    };
+
+    firestore
+      .collection('contacts')
+      .doc(contactId)
+      .collection('activities')
+
+      .add(activity)
+      .then((docRef) => {
+        console.log('Document written with ID: ', docRef.id);
+        activity.id = docRef.id;
+
+        alert('Activité créée en base de données');
+
+        dispatch(addActivity(activity));
+      })
+      .catch((error) => {
+        console.error('Error adding document: ', error);
+        //dispatch({ type: 'ADD_CONTACT_ERROR' }, err);
+      });
+  };
+};
+
+const addActivity = (contactId, activity) => {
+  return { type: 'ADD_ACTIVITY', contactId, activity };
 };
