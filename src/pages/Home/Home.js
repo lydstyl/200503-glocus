@@ -31,8 +31,6 @@ export const Home = () => {
       ) : (
         <p>Pas de contact</p>
       )}
-
-      <p>Créer aussi une page contact pour afficher un contact voir papier</p>
     </WithContainer>
   );
 };

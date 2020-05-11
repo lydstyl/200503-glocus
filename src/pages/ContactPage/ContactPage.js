@@ -14,6 +14,7 @@ export const ContactPage = () => {
   const contact = contacts.filter((c) => c.id === id)[0];
 
   const {
+    civility,
     firstName,
     lastName,
     company,
@@ -37,14 +38,11 @@ export const ContactPage = () => {
       title='Détail du contact'
       style={{ backgroundColor: 'lightgrey' }}
     >
-      <p>
-        Manque civilité {firstName} {lastName}, {company}, qualité {quality} sur
-        2
-      </p>
-      <p>QR Code ici !!!</p>
+      <h3>
+        {civility} {firstName} {lastName}, {company}, qualité {quality} sur 2
+      </h3>
 
       <p>
-        {/* <a href='tel:+33781154503'>+33781154503</a> */}
         <a href={`tel:${phone}`}>{phone}</a>
 
         <a href={`mailto:${email}`}>{email}</a>
@@ -54,18 +52,17 @@ export const ContactPage = () => {
 
       <p>
         <a href={linkedin} target='_blank' rel='noopener noreferrer'>
-          Linkedin
+          Site web
         </a>
       </p>
 
-      <pre>Activités : {JSON.stringify(activities, null, 4)}</pre>
-
-      {/* https://en.wikipedia.org/wiki/VCard --> 4.0 */}
+      <h3>Activités</h3>
+      <pre> {JSON.stringify(activities, null, 4)}</pre>
 
       <QRCode
         value={`BEGIN:VCARD
 VERSION:4.0
-FN:${`${`${firstName && firstName} `}${lastName}`}
+FN:${`${civility} ${`${firstName && firstName} `}${lastName}`}
 ${company && `ORG:${company}`}
 ${phone && `TEL:${phone}`}
 ${email && `EMAIL:${email}`}

@@ -29,7 +29,6 @@ export const InputField = ({ name, label, type, ...other }) => {
         <textarea
           id={name}
           name={name}
-          defaultValue={other.defaultValue || label}
           {...other} // rows="5" cols="33" ...
         />
       </Field>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { spaces } from '../../utils/cssVariables';
 import { thunkAddContact } from '../../actions/contactActions';
@@ -16,6 +17,7 @@ const Button = styled.button`
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleAddContact = (evt) => {
     evt.preventDefault();
@@ -44,17 +46,29 @@ export const ContactForm = () => {
     console.log(' handleAddContact contact', contact);
 
     dispatch(thunkAddContact(contact));
+
+    history.push('/');
   };
 
   return (
     <WithContainer title='Ajouter ou modifier un contact'>
       <Form>
         <InputField
+          type='radio'
+          name='civility'
+          value='Mme'
+          label='Mme'
+          checked
+        />
+        <InputField type='radio' name='civility' value='M.' label='M.' />
+
+        <InputField
           name='lastName'
           label='Nom de famille'
           placeholder='DUPOND'
         />
         <InputField name='firstName' label='Prénom' placeholder='Jean' />
+
         <InputField name='company' label='Entreprise' />
 
         <InputField
@@ -70,8 +84,9 @@ export const ContactForm = () => {
           name='description'
           label='description'
           type='textarea'
+          placeholder='Informations importantes: potentiel fort; probablement le client idéal; etc.'
           rows='5'
-          defaultValue='Informations importantes: potentiel fort; probablement le client idéal; etc.'
+          // defaultValue='Informations importantes: potentiel fort; probablement le client idéal; etc.'
         />
 
         <InputField
