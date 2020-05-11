@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -23,6 +23,14 @@ export const Nav = () => {
     evt.preventDefault();
     dispatch(thunkSignOut());
   };
+
+  useEffect(() => {
+    document.querySelector('.menu').addEventListener('click', (evt) => {
+      if (evt.target.tagName === 'A') {
+        document.querySelector('.menu-button-container').click();
+      }
+    });
+  }, []);
 
   return (
     <Ul className='menu'>

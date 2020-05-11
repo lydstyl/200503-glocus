@@ -11,6 +11,7 @@ Runs the app in the development mode.
 ### TODO
 
 - contact update
+- activity CRUD
 - search contact
 - PWA register && test
 
