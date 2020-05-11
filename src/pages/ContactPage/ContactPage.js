@@ -82,25 +82,22 @@ export const ContactPage = () => {
         </a>
       </p>
 
-      <p>
-        Activités : <pre>{JSON.stringify(activities, null, 4)}</pre>
-      </p>
+      <pre>Activités : {JSON.stringify(activities, null, 4)}</pre>
 
       {/* https://en.wikipedia.org/wiki/VCard --> 4.0 */}
 
       <QRCode
         value={`BEGIN:VCARD
 VERSION:4.0
-FN:${`${firstName} ${lastName}`}
-ORG:${company}
-TEL:${phone}
-EMAIL:${email}
+FN:${`${`${firstName && firstName} `}${lastName}`}
+${company && `ORG:${company}`}
+${phone && `TEL:${phone}`}
+${email && `EMAIL:${email}`}
+${linkedin && `URL:${linkedin}`}
 END:VCARD`}
       />
 
-      <p>
-        Debug : <pre>{JSON.stringify(contact, null, 4)}</pre>
-      </p>
+      <pre>Debug : {JSON.stringify(contact, null, 4)}</pre>
 
       <button onClick={handleDeleteContact}>Supprimer le contact</button>
     </WithContainer>
