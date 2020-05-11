@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
+import QRCode from 'qrcode.react';
 
 import { thunkDeleteContact } from '../../actions/contactActions';
 import WithContainer from '../../hocs/withContainer';
@@ -60,8 +61,6 @@ export const ContactPage = () => {
       title='Détail du contact'
       style={{ backgroundColor: 'lightgrey' }}
     >
-      <pre>{}</pre>
-
       <p>
         Manque civilité {firstName} {lastName}, {company}, qualité {quality} sur
         2
@@ -78,7 +77,7 @@ export const ContactPage = () => {
       <p>{description}</p>
 
       <p>
-        <a href={linkedin} target='_blank'>
+        <a href={linkedin} target='_blank' rel='noopener noreferrer'>
           Linkedin
         </a>
       </p>
@@ -86,6 +85,18 @@ export const ContactPage = () => {
       <p>
         Activités : <pre>{JSON.stringify(activities, null, 4)}</pre>
       </p>
+
+      {/* https://en.wikipedia.org/wiki/VCard --> 4.0 */}
+
+      <QRCode
+        value={`BEGIN:VCARD
+VERSION:4.0
+FN:${`${firstName} ${lastName}`}
+ORG:${company}
+TEL:${phone}
+EMAIL:${email}
+END:VCARD`}
+      />
 
       <p>
         Debug : <pre>{JSON.stringify(contact, null, 4)}</pre>
