@@ -13,7 +13,7 @@ export const thunkAddContact = (contact) => {
       .add(contact)
       .then((docRef) => {
         console.log('Document written with ID: ', docRef.id);
-        contact.contactId = docRef.id;
+        contact.id = docRef.id;
 
         dispatch(addContact(contact));
       })

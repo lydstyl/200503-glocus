@@ -33,11 +33,15 @@ export const ContactForm = () => {
     const contact = {};
 
     form.querySelectorAll('input').forEach((i) => {
-      const { name, value } = i;
-      contact[name] = value;
-
-      i.value = ''; // empty the input
+      contact[i.name] = i.value || `pas de ${i.name}`;
     });
+
+    contact.quality =
+      document.querySelector('[name=quality]').value || 'pas de qualité';
+    contact.description =
+      document.querySelector('textarea').value || 'pas de description';
+
+    console.log(' handleAddContact contact', contact);
 
     dispatch(thunkAddContact(contact));
   };
@@ -89,7 +93,7 @@ export const ContactForm = () => {
 
         <InputField
           name='linkedin'
-          label='Linkedin'
+          label='Site web'
           type='url'
           pattern='https://.*'
           placeholder='https://example.com'

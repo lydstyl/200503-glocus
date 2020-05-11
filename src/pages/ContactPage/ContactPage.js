@@ -12,30 +12,6 @@ export const ContactPage = () => {
 
   const contacts = useSelector((state) => state.contacts);
   const contact = contacts.filter((c) => c.id === id)[0];
-  const c = {};
-  const toDestructure = [
-    'firstName',
-    'lastName',
-    'company',
-    'quality',
-    'phone',
-    'email',
-    'description',
-    'linkedin',
-    'activities',
-  ];
-
-  toDestructure.forEach((varName) => {
-    c[varName] = `pas de ${varName}`;
-  });
-
-  if (contact) {
-    toDestructure.forEach((varName) => {
-      if (contact[varName]) {
-        c[varName] = contact[varName];
-      }
-    });
-  }
 
   const {
     firstName,
@@ -47,7 +23,7 @@ export const ContactPage = () => {
     description,
     linkedin,
     activities,
-  } = c;
+  } = contact;
 
   const dispatch = useDispatch();
   const handleDeleteContact = () => {
