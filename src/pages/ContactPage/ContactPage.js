@@ -10,9 +10,7 @@ import {
 } from '../../actions/contactActions';
 import WithContainer from '../../hocs/withContainer';
 
-const Activity = styled.textarea`
-  width: 100%;
-`;
+import { ActivityItem } from '../../components/ActivityItem/ActivityItem';
 
 export const ContactPage = () => {
   const { id } = useParams();
@@ -46,11 +44,6 @@ export const ContactPage = () => {
   };
 
   const handleAddactivity = () => {
-    // dispatch(thunkDeleteContact(id));
-    // history.push('/');
-
-    // const contactId = id;
-
     dispatch(thunkAddactivity(contact));
   };
 
@@ -94,13 +87,11 @@ export const ContactPage = () => {
 
         {activities &&
           activities.map((a) => (
-            <Activity
+            <ActivityItem
               key={a.createdAt}
-              name='activity'
-              id={a.createdAt}
-              rows='4'
-              defaultValue={a.text}
-            ></Activity>
+              contact={contact}
+              activity={a}
+            ></ActivityItem>
           ))}
       </div>
 

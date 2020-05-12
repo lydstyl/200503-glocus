@@ -80,7 +80,6 @@ export const thunkDeleteContact = (id) => {
         alert('Contact supprimé de la base de données.');
 
         dispatch(deleteContact(id));
-        // delete activities docs here or not if only contacts
       })
       .catch(function (error) {
         console.error('Error removing document: ', error);
@@ -131,6 +130,12 @@ export const thunkAddactivity = (contact) => {
   };
 };
 
-const addActivity = (contactId, activity) => {
-  return { type: 'ADD_ACTIVITY', contactId, activity };
+export const thunkDeleteActivity = (contact, activityCreatedAt) => {
+  return (dispatch, getState, getFirebase) => {
+    contact.activities = [
+      ...contact.activities.filter((a) => a.createdAt !== activityCreatedAt),
+    ];
+
+    dispatch(thunkSetContact(contact.id, contact));
+  };
 };
