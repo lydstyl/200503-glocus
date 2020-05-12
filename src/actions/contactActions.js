@@ -112,41 +112,22 @@ export const thunkSetContact = (id, contact) => {
   };
 };
 
-const setContact = (id) => {
-  return { type: 'SET_CONTACT', id };
+const setContact = (id, contact) => {
+  return { type: 'SET_CONTACT', id, contact };
 };
 
 // ACTIVITY
-export const thunkAddactivity = (contactId) => {
+export const thunkAddactivity = (contact) => {
   return (dispatch, getState, getFirebase) => {
-    const firebase = getFirebase();
-    const firestore = firebase.firestore();
-
     const activity = {
       createdAt: new Date(),
       editedAt: new Date(),
-      contactId,
-      text: 'ajouter votre activité ici !',
+      text: 'Ajouter votre activité ici !',
     };
 
-    firestore
-      .collection('contacts')
-      .doc(contactId)
-      .collection('activities')
+    contact.activities = [...contact.activities, activity];
 
-      .add(activity)
-      .then((docRef) => {
-        console.log('Document written with ID: ', docRef.id);
-        activity.id = docRef.id;
-
-        alert('Activité créée en base de données');
-
-        dispatch(addActivity(activity));
-      })
-      .catch((error) => {
-        console.error('Error adding document: ', error);
-        //dispatch({ type: 'ADD_CONTACT_ERROR' }, err);
-      });
+    dispatch(thunkSetContact(contact.id, contact));
   };
 };
 

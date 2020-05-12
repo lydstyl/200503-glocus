@@ -49,9 +49,9 @@ export const ContactPage = () => {
     // dispatch(thunkDeleteContact(id));
     // history.push('/');
 
-    const contactId = id;
+    // const contactId = id;
 
-    dispatch(thunkAddactivity(contactId));
+    dispatch(thunkAddactivity(contact));
   };
 
   return (
@@ -90,9 +90,18 @@ export const ContactPage = () => {
       </p>
 
       <div className='activities'>
-        <Activity name='activity' id='' rows='4'></Activity>
-        <Activity name='activity' id='' rows='4'></Activity>
-        <Activity name='activity' id='' rows='4'></Activity>
+        <p>/contacts/YxneS1L5CRBIYUmGiYp4/activities/TLXMvbuZqsWZulKIkvRF</p>
+
+        {activities &&
+          activities.map((a) => (
+            <Activity
+              key={a.createdAt}
+              name='activity'
+              id={a.createdAt}
+              rows='4'
+              defaultValue={a.text}
+            ></Activity>
+          ))}
       </div>
 
       <pre> {JSON.stringify(activities, null, 4)}</pre>
