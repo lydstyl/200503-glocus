@@ -2,7 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
-import { thunkDeleteActivity } from '../../actions/contactActions';
+import {
+  thunkDeleteActivity,
+  thunkSetActivity,
+} from '../../actions/contactActions';
 
 const ActivityBox = styled.div`
   /* width: 100%; */
@@ -15,21 +18,29 @@ const Activity = styled.textarea`
 export const ActivityItem = ({ contact, activity }) => {
   const dispatch = useDispatch();
 
+  const { activityId, text } = activity;
+
   const handleDeleteActivity = () => {
-    dispatch(thunkDeleteActivity(contact, activity.createdAt));
+    dispatch(thunkDeleteActivity(contact, activityId));
+  };
+
+  const handleSetActivity = () => {
+    const newText = document.getElementById(activityId).value;
+    activity.text = newText;
+    dispatch(thunkSetActivity(contact, activity));
   };
 
   return (
     <ActivityBox>
       <Activity
-        key={activity.createdAt}
+        key={activityId}
         name='activity'
-        id={activity.createdAt}
+        id={activityId}
         rows='4'
-        defaultValue={activity.text}
+        defaultValue={text}
       ></Activity>
 
-      <button>Enregistrer</button>
+      <button onClick={handleSetActivity}>Enregistrer</button>
       <button onClick={handleDeleteActivity}>Supprimer</button>
     </ActivityBox>
   );

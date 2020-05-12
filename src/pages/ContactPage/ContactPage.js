@@ -2,11 +2,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import QRCode from 'qrcode.react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 import {
   thunkDeleteContact,
-  thunkAddactivity,
+  thunkAddActivity,
+  thunkSetActivity,
 } from '../../actions/contactActions';
 import WithContainer from '../../hocs/withContainer';
 
@@ -33,18 +34,19 @@ export const ContactPage = () => {
   } = contact;
 
   const dispatch = useDispatch();
+
   const handleDeleteContact = () => {
     dispatch(thunkDeleteContact(id));
 
     history.push('/');
   };
+
   const handleUpdateContact = () => {
-    // dispatch(thunkDeleteContact(id));
-    // history.push('/');
+    dispatch(thunkSetActivity(contact));
   };
 
   const handleAddactivity = () => {
-    dispatch(thunkAddactivity(contact));
+    dispatch(thunkAddActivity(contact));
   };
 
   return (

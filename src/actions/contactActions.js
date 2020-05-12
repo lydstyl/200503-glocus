@@ -116,11 +116,12 @@ const setContact = (id, contact) => {
 };
 
 // ACTIVITY
-export const thunkAddactivity = (contact) => {
+export const thunkAddActivity = (contact) => {
   return (dispatch, getState, getFirebase) => {
     const activity = {
-      createdAt: new Date(),
-      editedAt: new Date(),
+      activityId: Math.random() * 1000000000000000000,
+      createdAt: new Date().toString(),
+      editedAt: new Date().toString(),
       text: 'Ajouter votre activité ici !',
     };
 
@@ -130,10 +131,24 @@ export const thunkAddactivity = (contact) => {
   };
 };
 
-export const thunkDeleteActivity = (contact, activityCreatedAt) => {
+export const thunkSetActivity = (contact, activity) => {
+  return (dispatch, getState, getFirebase) => {
+    contact.activities.map((a) => {
+      if (a.activityId === activity.activityId) {
+        return activity;
+      } else {
+        return a;
+      }
+    });
+
+    dispatch(thunkSetContact(contact.id, contact));
+  };
+};
+
+export const thunkDeleteActivity = (contact, activityId) => {
   return (dispatch, getState, getFirebase) => {
     contact.activities = [
-      ...contact.activities.filter((a) => a.createdAt !== activityCreatedAt),
+      ...contact.activities.filter((a) => a.activityId !== activityId),
     ];
 
     dispatch(thunkSetContact(contact.id, contact));
