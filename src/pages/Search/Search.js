@@ -39,6 +39,10 @@ const getSuggestionValue = (suggestion) => suggestion.name;
 // Use your imagination to render suggestions.
 const renderSuggestion = (suggestion) => <div>{suggestion.name}</div>;
 
+// class to func
+// add contacts (firstName, lastname, email, phone)
+// map les contacts --> nom ou prenom ou email ou tél
+
 export class Search extends React.Component {
   constructor() {
     super();
