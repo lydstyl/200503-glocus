@@ -20,7 +20,6 @@ export const ContactForm = (props) => {
   const history = useHistory();
 
   const { id } = useParams();
-  // const history = useHistory();
 
   const contacts = useSelector((state) => state.contacts);
 
@@ -85,7 +84,10 @@ export const ContactForm = (props) => {
 
   const handleSetContact = (evt) => {
     evt.preventDefault();
+
     dispatch(thunkSetContact(id, contact));
+
+    history.push(`/contact/${id}`);
   };
 
   const handleInputChange = (e) => {
@@ -104,7 +106,7 @@ export const ContactForm = (props) => {
           name='civility'
           value='Mme'
           label='Mme'
-          // checked
+          checked={id && contact.civility === 'Mme'}
         />
         <InputField
           onChange={handleInputChange}
@@ -112,6 +114,7 @@ export const ContactForm = (props) => {
           name='civility'
           value='M.'
           label='M.'
+          checked={id && contact.civility === 'M.'}
         />
 
         <InputField
@@ -119,11 +122,12 @@ export const ContactForm = (props) => {
           name='lastName'
           label='Nom de famille'
           placeholder='DUPOND'
-          value={contact.lastName}
+          value={id && contact.lastName}
         />
+
         <InputField
           onChange={handleInputChange}
-          value={(contact && contact.firstName) || ''}
+          value={id && contact.firstName}
           name='firstName'
           label='Prénom'
           placeholder='Jean'
@@ -133,6 +137,7 @@ export const ContactForm = (props) => {
           onChange={handleInputChange}
           name='company'
           label='Entreprise'
+          value={id && contact.company}
         />
 
         <InputField
@@ -143,6 +148,7 @@ export const ContactForm = (props) => {
           min='0'
           max='2'
           step='1'
+          value={id && contact.quality}
         />
 
         <InputField
@@ -150,8 +156,9 @@ export const ContactForm = (props) => {
           name='description'
           label='description'
           type='textarea'
-          placeholder='Informations importantes: potentiel fort; probablement le client idéal; etc.'
           rows='5'
+          placeholder='Informations importantes: potentiel fort; probablement le client idéal; etc.'
+          value={id && contact.description}
           // defaultValue='Informations importantes: potentiel fort; probablement le client idéal; etc.'
         />
 
@@ -162,6 +169,7 @@ export const ContactForm = (props) => {
           type='tel'
           pattern='\+?[0-9]{0,2}([0-9]\s?){10,}'
           placeholder='01 23 45 67 89'
+          value={id && contact.phone}
         />
 
         <InputField
@@ -172,6 +180,7 @@ export const ContactForm = (props) => {
           pattern='.+@.+\.[a-z]{2,3}'
           //size='30'
           placeholder='example@truc.com'
+          value={id && contact.email}
         />
 
         <InputField
@@ -181,8 +190,10 @@ export const ContactForm = (props) => {
           type='url'
           pattern='https://.*'
           placeholder='https://example.com'
+          value={id && contact.linkedin}
         />
-        {contact ? (
+
+        {id ? (
           <Button onClick={handleSetContact}>Modifier</Button>
         ) : (
           <Button onClick={handleAddContact}>Ajouter</Button>
