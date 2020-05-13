@@ -91,6 +91,10 @@ function App() {
             <Settings />
           </PrivateRoute>
 
+          <PrivateRoute path='/ajouter-ou-modifier-un-contact/:id'>
+            <ContactForm />
+          </PrivateRoute>
+
           <PrivateRoute path='/ajouter-ou-modifier-un-contact'>
             <ContactForm />
           </PrivateRoute>

@@ -10,7 +10,6 @@ Runs the app in the development mode.
 
 ### TODO
 
-- update contact (ex phone)
 - search contact
 - PWA register && test
 

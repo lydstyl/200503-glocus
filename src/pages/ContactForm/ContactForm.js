@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { spaces } from '../../utils/cssVariables';
-import { thunkAddContact } from '../../actions/contactActions';
+import { thunkAddContact, thunkSetContact } from '../../actions/contactActions';
 import WithContainer from '../../hocs/withContainer';
 import { InputField } from '../../components/InputField/InputField';
 
@@ -15,9 +15,42 @@ const Button = styled.button`
   padding: ${spaces.s30};
 `;
 
-export const ContactForm = () => {
+export const ContactForm = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const { id } = useParams();
+  // const history = useHistory();
+
+  const contacts = useSelector((state) => state.contacts);
+
+  // const {
+  //   civility,
+  //   firstName,
+  //   lastName,
+  //   company,
+  //   quality,
+  //   phone,
+  //   email,
+  //   description,
+  //   linkedin,
+  //   activities,
+  // } = contact;
+
+  const [contact, setContact] = useState(
+    (id && contacts.filter((c) => c.id === id)[0]) || {
+      civility: '',
+      firstName: '',
+      lastName: '',
+      company: '',
+      quality: '',
+      phone: '',
+      email: '',
+      description: '',
+      linkedin: '',
+      activities: '',
+    }
+  );
 
   const handleAddContact = (evt) => {
     evt.preventDefault();
@@ -50,28 +83,60 @@ export const ContactForm = () => {
     history.push('/');
   };
 
+  const handleSetContact = (evt) => {
+    evt.preventDefault();
+    dispatch(thunkSetContact(id, contact));
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setContact({ ...contact, [name]: value });
+
+    console.log('setC', contact, name, value);
+  };
+
   return (
     <WithContainer title='Ajouter ou modifier un contact'>
       <Form>
         <InputField
+          onChange={handleInputChange}
           type='radio'
           name='civility'
           value='Mme'
           label='Mme'
-          checked
+          // checked
         />
-        <InputField type='radio' name='civility' value='M.' label='M.' />
+        <InputField
+          onChange={handleInputChange}
+          type='radio'
+          name='civility'
+          value='M.'
+          label='M.'
+        />
 
         <InputField
+          onChange={handleInputChange}
           name='lastName'
           label='Nom de famille'
           placeholder='DUPOND'
+          value={contact.lastName}
         />
-        <InputField name='firstName' label='Prénom' placeholder='Jean' />
-
-        <InputField name='company' label='Entreprise' />
+        <InputField
+          onChange={handleInputChange}
+          value={(contact && contact.firstName) || ''}
+          name='firstName'
+          label='Prénom'
+          placeholder='Jean'
+        />
 
         <InputField
+          onChange={handleInputChange}
+          name='company'
+          label='Entreprise'
+        />
+
+        <InputField
+          onChange={handleInputChange}
           name='quality'
           label='Qualité'
           type='range'
@@ -81,6 +146,7 @@ export const ContactForm = () => {
         />
 
         <InputField
+          onChange={handleInputChange}
           name='description'
           label='description'
           type='textarea'
@@ -90,6 +156,7 @@ export const ContactForm = () => {
         />
 
         <InputField
+          onChange={handleInputChange}
           name='phone'
           label='Téléphone'
           type='tel'
@@ -98,6 +165,7 @@ export const ContactForm = () => {
         />
 
         <InputField
+          onChange={handleInputChange}
           name='email'
           label='E-mail'
           type='email'
@@ -107,14 +175,18 @@ export const ContactForm = () => {
         />
 
         <InputField
+          onChange={handleInputChange}
           name='linkedin'
           label='Site web'
           type='url'
           pattern='https://.*'
           placeholder='https://example.com'
         />
-
-        <Button onClick={handleAddContact}>Ajouter</Button>
+        {contact ? (
+          <Button onClick={handleSetContact}>Modifier</Button>
+        ) : (
+          <Button onClick={handleAddContact}>Ajouter</Button>
+        )}
       </Form>
     </WithContainer>
   );

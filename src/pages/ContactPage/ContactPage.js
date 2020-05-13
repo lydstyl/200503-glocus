@@ -7,7 +7,6 @@ import QRCode from 'qrcode.react';
 import {
   thunkDeleteContact,
   thunkAddActivity,
-  thunkSetActivity,
 } from '../../actions/contactActions';
 import WithContainer from '../../hocs/withContainer';
 
@@ -41,10 +40,6 @@ export const ContactPage = () => {
     history.push('/');
   };
 
-  const handleUpdateContact = () => {
-    dispatch(thunkSetActivity(contact));
-  };
-
   const handleAddactivity = () => {
     dispatch(thunkAddActivity(contact));
   };
@@ -72,8 +67,9 @@ export const ContactPage = () => {
         </a>
       </p>
 
-      <button onClick={handleUpdateContact}>Modifier</button>
-      <Link to='/contact/:id/modifier'>Accueil</Link>
+      <Link to={`/ajouter-ou-modifier-un-contact/${id}`}>
+        Modifier le contact
+      </Link>
 
       <h3>Activités</h3>
 
