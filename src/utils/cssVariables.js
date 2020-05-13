@@ -10,6 +10,7 @@ export const spaces = {
   s6: '6px',
   s10: '8px',
   s30: '10px',
+  s40: '16px',
   s50: '20px',
   s80: '40px',
   s90: '70px',

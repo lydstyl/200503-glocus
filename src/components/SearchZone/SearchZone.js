@@ -69,7 +69,7 @@ class SearchZone extends React.Component {
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
-      placeholder: 'Type a programming language',
+      placeholder: 'Nom, téléphone ou email',
       value,
       onChange: this.onChange,
     };

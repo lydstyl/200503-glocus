@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import { spaces } from '../utils/cssVariables';
 
 const Main = styled.main`
-  max-width: 320px;
+  /* max-width: 320px; */
+  max-width: 768px;
   margin: ${spaces.s50} auto;
+  padding: ${spaces.s40};
 
   h2 {
     font-size: 2.4rem;
