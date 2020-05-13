@@ -75,7 +75,9 @@ export const ContactForm = (props) => {
     contact.description =
       document.querySelector('textarea').value || 'pas de description';
 
-    console.log(' handleAddContact contact', contact);
+    if (document.querySelector('[value=Mme]').checked) {
+      contact.civility = 'Mme';
+    }
 
     dispatch(thunkAddContact(contact));
 
