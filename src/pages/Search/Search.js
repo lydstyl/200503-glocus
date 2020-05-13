@@ -1,35 +1,59 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import WithContainer from '../../hocs/withContainer';
 import SearchZone from '../../components/SearchZone/SearchZone';
 
-// When suggestion is clicked, Autosuggest needs to populate the input
-// based on the clicked suggestion. Teach Autosuggest how to calculate the
-// input value for every given suggestion.
-const getSuggestionValue = (suggestion) => suggestion.name;
-
-// Use your imagination to render suggestions.
-const renderSuggestion = (suggestion) => <div>{suggestion.name}</div>;
-
-// class to func
-// add contacts (firstName, lastname, email, phone)
-// map les contacts --> nom ou prenom ou email ou tél
-
 export const Search = () => {
+  const contacts = useSelector((state) => state.contacts);
+
   // Imagine you have a list of languages that you'd like to autosuggest.
+  // const suggestions = [
+  //   {
+  //     name: 'C',
+  //     year: 1972,
+  //   },
+  //   {
+  //     name: 'Elm',
+  //     year: 2012,
+  //   },
+  //   {
+  //     name: 'ccc',
+  //     year: 2012,
+  //   },
+  // ];
+
+  const lastNames = contacts.map((c) => ({
+    name: c.lastName,
+    contact: c,
+  }));
+
+  const firstNames = contacts.map((c) => ({
+    name: c.firstName,
+    contact: c,
+  }));
+
+  const companies = contacts.map((c) => ({
+    name: c.company,
+    contact: c,
+  }));
+
+  const phones = contacts.map((c) => ({
+    name: c.phone,
+    contact: c,
+  }));
+
+  const emails = contacts.map((c) => ({
+    name: c.email,
+    contact: c,
+  }));
+
   const suggestions = [
-    {
-      name: 'C',
-      year: 1972,
-    },
-    {
-      name: 'Elm',
-      year: 2012,
-    },
-    {
-      name: 'ccc',
-      year: 2012,
-    },
+    ...lastNames,
+    ...firstNames,
+    ...companies,
+    ...phones,
+    ...emails,
   ];
 
   // Teach Autosuggest how to calculate suggestions for any given input value.
@@ -40,7 +64,8 @@ export const Search = () => {
     return inputLength === 0
       ? []
       : suggestions.filter(
-          (lang) => lang.name.toLowerCase().slice(0, inputLength) === inputValue
+          (suggestion) =>
+            suggestion.name.toLowerCase().slice(0, inputLength) === inputValue
         );
   };
 
