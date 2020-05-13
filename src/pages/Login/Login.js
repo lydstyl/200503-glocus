@@ -1,5 +1,6 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { InputField } from '../../components/InputField/InputField';
 
@@ -12,12 +13,14 @@ import {
 import WithContainer from '../../hocs/withContainer';
 
 export const Login = () => {
-  const dispatch = useDispatch();
+  const email = useSelector((state) => state.firebase.auth.email);
+  const history = useHistory();
 
-  const clearForm = () => {
-    document.querySelector('form [type=email]').value = '';
-    document.querySelector('form [type=password]').value = '';
-  };
+  if (email) {
+    history.push('/');
+  }
+
+  const dispatch = useDispatch();
 
   const handleLogin = (evt) => {
     evt.preventDefault();
@@ -28,8 +31,6 @@ export const Login = () => {
     dispatch(
       thunkSignInWithEmailAndPassword(emailInput.value, passwordInput.value)
     );
-
-    clearForm();
   };
 
   const handleCreateUserWithEmailAndPassword = (evt) => {
@@ -41,8 +42,6 @@ export const Login = () => {
         document.querySelector('form [type=password]').value
       )
     );
-
-    clearForm();
   };
 
   const handleSendPasswordResetEmail = (evt) => {

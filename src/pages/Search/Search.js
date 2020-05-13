@@ -8,7 +8,7 @@ export const Search = () => {
     <WithContainer title='Rechercher un contact'>
       <InputField
         type='search'
-        minlength='3'
+        minLength='3'
         name='query'
         label='Rechercher'
         placeholder='Dupond ou Jean ou jean@ ou 0781'
