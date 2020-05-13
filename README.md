@@ -10,7 +10,7 @@ Runs the app in the development mode.
 
 ### TODO
 
-- search contact
+- sort contacts and list 3 contacts to call in home page
 - PWA register && test
 
 ### Comments

@@ -1,5 +1,6 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
+import { Link } from 'react-router-dom';
 
 // When suggestion is clicked, Autosuggest needs to populate the input
 // based on the clicked suggestion. Teach Autosuggest how to calculate the
@@ -7,7 +8,21 @@ import Autosuggest from 'react-autosuggest';
 const getSuggestionValue = (suggestion) => suggestion.name;
 
 // Use your imagination to render suggestions.
-const renderSuggestion = (suggestion) => <div>{suggestion.name}</div>;
+const renderSuggestion = (suggestion) => {
+  const {
+    id,
+    firstName,
+    lastName,
+    company,
+    //phone, email
+  } = suggestion.contact;
+
+  return (
+    <Link to={`/contact/${id}`}>
+      {suggestion.name} --> {firstName} {lastName} {company}
+    </Link>
+  );
+};
 
 // class to func
 // add contacts (firstName, lastname, email, phone)
