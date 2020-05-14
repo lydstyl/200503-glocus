@@ -1,4 +1,5 @@
 import { thunkGetContact } from './contactActions';
+import { thunkGetSettings } from './settingsActions';
 
 export const thunkOnAuthStateChanged = () => {
   // return (dispatch, getState, { getFirebase }) => {
@@ -10,8 +11,8 @@ export const thunkOnAuthStateChanged = () => {
         console.log(`user =>`, user);
 
         dispatch(thunkGetContact());
+        dispatch(thunkGetSettings());
 
-        // TODO we ill need to get ACTIVITIES
         // TODO set loading, dispatch and toast success and errors for every thunks
       } else {
         alert("Il n'y a pas d'utilisateur connecté.");
