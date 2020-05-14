@@ -4,13 +4,14 @@ import { firestoreReducer } from 'redux-firestore'; // <- needed if using firest
 
 import user from './user';
 import contacts from './contacts';
+import settings from './settings';
 
 const rootReducer = combineReducers({
   firebase,
   firestore: firestoreReducer, // <- needed if using firestore
   user,
   contacts,
-  // activities
+  settings,
 });
 
 export default rootReducer;

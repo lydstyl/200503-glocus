@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import WithContainer from '../../hocs/withContainer';
 import { InputField } from '../../components/InputField/InputField';
+import { thunkSetSettings } from '../../actions/settingsActions';
 
 export const Settings = () => {
+  const dispatch = useDispatch();
+
   const [settings, setSettings] = useState({
-    maxContactsToShow: 2, // on Home Page todo put default 5
-    showContactIfLastActivityOlderThen: 7, // x days on HomePage
-    maxActivitiesToShow: 2, // on Contact Page todo put default 5
+    maxContactsToShow: 2, // todo get settings from firebase
+    showContactIfLastActivityOlderThen: 7,
+    maxActivitiesToShow: 2,
   });
 
   const {
@@ -23,6 +28,12 @@ export const Settings = () => {
       ...settings,
       [name]: value,
     });
+  };
+
+  const handleSaveSettings = (evt) => {
+    evt.preventDefault();
+
+    dispatch(thunkSetSettings(settings));
   };
 
   return (
@@ -56,6 +67,8 @@ export const Settings = () => {
         max='20'
         min='1'
       />
+
+      <button onClick={handleSaveSettings}>Sauver</button>
     </WithContainer>
   );
 };
