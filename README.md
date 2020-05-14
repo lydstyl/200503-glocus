@@ -20,6 +20,7 @@ Runs the app in the development mode.
   - last activity update time
 - activity update set last activity update time of the contact
 - home filtered and sorted contact list
+- show donut before add a new contact link with number of contact quality 0,1 and 2
 - CSS
 - PWA register && test
 
