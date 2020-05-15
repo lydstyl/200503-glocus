@@ -27,8 +27,8 @@ function sortByQualityAndLastActivity(ob1, ob2) {
 }
 
 export const Home = () => {
-  let contacts = useSelector((state) => state.contacts);
   const settings = useSelector((state) => state.settings);
+  let contacts = useSelector((state) => state.contacts);
 
   contacts = contacts.filter((c) => {
     // don't show bad quality contacts
@@ -72,7 +72,7 @@ export const Home = () => {
 
       <p>ou</p>
 
-      <p>Liste à relancer</p>
+      <p>Liste à relancer :</p>
 
       {contacts.length ? (
         contacts.map((c) => (

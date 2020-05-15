@@ -13,10 +13,12 @@ import WithContainer from '../../hocs/withContainer';
 import { ActivityItem } from '../../components/ActivityItem/ActivityItem';
 
 export const ContactPage = () => {
+  const dispatch = useDispatch();
+  const settings = useSelector((state) => state.settings);
+  const contacts = useSelector((state) => state.contacts);
   const { id } = useParams();
   const history = useHistory();
 
-  const contacts = useSelector((state) => state.contacts);
   const contact = contacts.filter((c) => c.id === id)[0];
 
   const {
@@ -29,10 +31,11 @@ export const ContactPage = () => {
     email,
     description,
     linkedin,
-    activities,
   } = contact;
 
-  const dispatch = useDispatch();
+  let { activities } = contact;
+
+  activities = activities.slice(0, settings.maxActivitiesToShow);
 
   const handleDeleteContact = () => {
     dispatch(thunkDeleteContact(id));
@@ -93,7 +96,7 @@ export const ContactPage = () => {
           ))}
       </div>
 
-      <pre> {JSON.stringify(activities, null, 4)}</pre>
+      {/* <pre> {JSON.stringify(activities, null, 4)}</pre> */}
 
       <QRCode
         value={`BEGIN:VCARD
@@ -106,7 +109,7 @@ ${linkedin && `URL:${linkedin}`}
 END:VCARD`}
       />
 
-      <pre>Debug : {JSON.stringify(contact, null, 4)}</pre>
+      {/* <pre>Debug : {JSON.stringify(contact, null, 4)}</pre> */}
 
       <button onClick={handleDeleteContact}>Supprimer tout</button>
     </WithContainer>
