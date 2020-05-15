@@ -7,7 +7,19 @@ import WithContainer from '../../hocs/withContainer';
 // import { spaces } from '../../utils/cssVariables';
 
 export const Home = () => {
-  const contacts = useSelector((state) => state.contacts);
+  let contacts = useSelector((state) => state.contacts);
+
+  contacts = contacts.filter((c) => {
+    if (c.quality == 0) return false; // don't show bad quality contacts
+
+    // nb of day between now and last activity ?
+
+    // do not show too recent last activity contact
+
+    return true;
+  });
+
+  // sort contact by quality then by last activity older to newer
 
   return (
     <WithContainer title='Accueil'>
@@ -24,7 +36,8 @@ export const Home = () => {
       {contacts.length ? (
         contacts.map((c) => (
           <li key={c.id}>
-            card {c.lastName} {c.firstName} {c.company}
+            card {c.lastName} {c.firstName} {c.company} {c.quality}{' '}
+            {c.lastActivity}
             <Link to={`/contact/${c.id}`}>Détail</Link>
           </li>
         ))

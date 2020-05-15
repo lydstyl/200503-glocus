@@ -1,5 +1,6 @@
 # Glocus
 
+Ne perdez plus de clients sans vous fatiguer.
 Prospecter comme Glocus péchait !
 
 Webapp under construction [Glocus](https://glocus.netlify.app).

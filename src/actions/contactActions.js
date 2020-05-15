@@ -96,6 +96,8 @@ export const thunkSetContact = (id, contact) => {
     const firebase = getFirebase();
     const firestore = firebase.firestore();
 
+    contact.editedAt = new Date().toString();
+
     firestore
       .collection('contacts')
       .doc(id)
@@ -135,6 +137,10 @@ export const thunkSetActivity = (contact, activity) => {
   return (dispatch, getState, getFirebase) => {
     contact.activities.map((a) => {
       if (a.activityId === activity.activityId) {
+        activity.editedAt = new Date().toString();
+
+        contact.lastActivity = new Date().toString();
+
         return activity;
       } else {
         return a;
