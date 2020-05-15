@@ -1,31 +1,34 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import WithContainer from '../../hocs/withContainer';
 import { InputField } from '../../components/InputField/InputField';
 import { thunkSetSettings } from '../../actions/settingsActions';
 
 export const Settings = () => {
+  const settings = useSelector((state) => state.settings);
+
   const dispatch = useDispatch();
 
-  const [settings, setSettings] = useState({
-    maxContactsToShow: 2, // todo get settings from firebase
-    showContactIfLastActivityOlderThen: 7,
-    maxActivitiesToShow: 2,
+  const [state, setSettings] = useState({
+    maxContactsToShow: settings.maxContactsToShow,
+    showContactIfLastActivityOlderThen:
+      settings.showContactIfLastActivityOlderThen,
+    maxActivitiesToShow: settings.maxActivitiesToShow,
   });
 
   const {
     maxContactsToShow,
     showContactIfLastActivityOlderThen,
     maxActivitiesToShow,
-  } = settings;
+  } = state;
 
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
     console.log(name, value);
 
     setSettings({
-      ...settings,
+      ...state,
       [name]: value,
     });
   };
@@ -33,7 +36,7 @@ export const Settings = () => {
   const handleSaveSettings = (evt) => {
     evt.preventDefault();
 
-    dispatch(thunkSetSettings(settings));
+    dispatch(thunkSetSettings(state));
   };
 
   return (

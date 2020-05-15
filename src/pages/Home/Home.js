@@ -32,6 +32,7 @@ export const Home = () => {
 
   contacts = contacts.filter((c) => {
     // don't show bad quality contacts
+    // eslint-disable-next-line
     if (c.quality == 0) return false;
 
     return true;
