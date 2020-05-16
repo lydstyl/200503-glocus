@@ -53,8 +53,6 @@ export const thunkGetContact = () => {
           contacts.push(contact);
         });
 
-        console.log(`contacts =>`, contacts);
-
         dispatch(getContact(contacts));
 
         // TODO catch, dispatch and toast (make a thunk for this with set time out) success and error

@@ -1,12 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import styled from 'styled-components';
 
 import { getDiffTime } from '../../utils/getDiffTime';
 import WithContainer from '../../hocs/withContainer';
+import { StyledHome, ContactsWrapper } from './StyledHome';
 import { ContactCard } from '../../components/ContactCard/ContactCard';
-// import { spaces } from '../../utils/cssVariables';
 
 function sortByQualityAndLastActivity(ob1, ob2) {
   if (ob2.quality > ob1.quality) {
@@ -52,7 +51,7 @@ export const Home = () => {
     if (!c.lastActivity) return true;
 
     // do not show too recent activity contact
-    if (!(c.diffTime.diffDays > settings.showContactIfLastActivityOlderThen))
+    if (!(c.diffTime.diffDays >= settings.showContactIfLastActivityOlderThen))
       return false;
 
     return true;
@@ -66,25 +65,27 @@ export const Home = () => {
 
   return (
     <WithContainer title='Accueil'>
-      <p>Nombre de prospects de qualité supérieur à zéro : {prospectNb}</p>
+      <StyledHome>
+        <p>Nombre de prospects de qualité : {prospectNb}</p>
 
-      <hr />
-
-      <p>
-        <Link to='/ajouter-ou-modifier-un-contact'>
+        <Link className='add-contact' to='/ajouter-ou-modifier-un-contact'>
           Ajouter un nouveau prospect
         </Link>
-      </p>
 
-      <hr />
+        <hr />
 
-      <p>Prospects à relancer :</p>
+        <div className='contact-to-work'>
+          <p>Prospects à relancer :</p>
 
-      {contacts.length ? (
-        contacts.map((c) => <ContactCard key={c.id} contact={c} />)
-      ) : (
-        <p>Pas de contact</p>
-      )}
+          <ContactsWrapper>
+            {contacts.length ? (
+              contacts.map((c) => <ContactCard key={c.id} contact={c} />)
+            ) : (
+              <p>Pas de contact</p>
+            )}
+          </ContactsWrapper>
+        </div>
+      </StyledHome>
     </WithContainer>
   );
 };

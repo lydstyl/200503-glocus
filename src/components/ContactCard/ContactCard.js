@@ -13,7 +13,6 @@ function exists(string) {
 }
 
 const CardWrapper = styled.div`
-  margin: ${spaces.s80} 0;
   padding: ${spaces.s40};
   background-color: ${colors.secondary};
   border: 1px solid;
@@ -39,16 +38,16 @@ export const ContactCard = ({
     <CardWrapper>
       <Link to={`/contact/${id}`}>
         <p>
-          {quality == 2 && <span className='star'>★</span>}{' '}
-          {exists(company) && company}
+          {quality === '2' && <span className='star'>★</span>}{' '}
+          {exists(company) && company.toUpperCase()}
         </p>
 
         <p>
-          {civility} {exists(lastName) && lastName}{' '}
+          {civility} {exists(lastName) && lastName.toUpperCase()}{' '}
           {exists(firstName) && firstName}
         </p>
 
-        {diffDays * 0 === 0 && <p>Pas d'activité depuis {diffDays} jour(s).</p>}
+        {diffDays * 0 === 0 && <p>Activité depuis {diffDays} jour(s).</p>}
       </Link>
     </CardWrapper>
   );
