@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { spaces } from '../utils/cssVariables';
 
 const Main = styled.main`
-  /* max-width: 320px; */
   max-width: 768px;
   margin: ${spaces.s50} auto;
   padding: ${spaces.s40};
@@ -17,6 +16,10 @@ const Main = styled.main`
   h2 {
     font-size: 2.4rem;
     margin-bottom: ${spaces.s80};
+
+    @media (min-width: 768px) {
+      text-align: center;
+    }
   }
 
   hr {

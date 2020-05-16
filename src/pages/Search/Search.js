@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import WithContainer from '../../hocs/withContainer';
+import { StyledSearch } from './StyledSearch';
 import SearchZone from '../../components/SearchZone/SearchZone';
 
 export const Search = () => {
@@ -71,11 +72,9 @@ export const Search = () => {
 
   return (
     <WithContainer title='Rerchercher un contact'>
-      <p>
-        On peut taper nom ou prenom ou email ou tél et la liste des ContactCard
-        s'affiche au fur et à mesure qu'on tape à partir de 3 caractères
-      </p>
-      <SearchZone getSuggestions={getSuggestions} />
+      <StyledSearch>
+        <SearchZone getSuggestions={getSuggestions} />
+      </StyledSearch>
     </WithContainer>
   );
 };

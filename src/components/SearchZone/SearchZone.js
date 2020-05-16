@@ -2,6 +2,8 @@ import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import { Link } from 'react-router-dom';
 
+import { ContactCard } from '../ContactCard/ContactCard';
+
 // When suggestion is clicked, Autosuggest needs to populate the input
 // based on the clicked suggestion. Teach Autosuggest how to calculate the
 // input value for every given suggestion.
@@ -19,7 +21,7 @@ const renderSuggestion = (suggestion) => {
 
   return (
     <Link to={`/contact/${id}`}>
-      {suggestion.name} --> {firstName} {lastName} {company}
+      <ContactCard contact={suggestion.contact} />
     </Link>
   );
 };
