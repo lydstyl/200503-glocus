@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Menu } from './Menu';
 import { Nav } from '../Nav/Nav';
-import { spaces, colors } from '../../utils/cssVariables';
+import { colors } from '../../utils/cssVariables';
 
 const HeaderWrapper = styled.div`
   height: 70px;

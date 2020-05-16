@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import styled from 'styled-components';
 
-import WithContainer from '../../hocs/withContainer';
-// import { spaces } from '../../utils/cssVariables';
-
 import { getDiffTime } from '../../utils/getDiffTime';
+import WithContainer from '../../hocs/withContainer';
+import { ContactCard } from '../../components/ContactCard/ContactCard';
+// import { spaces } from '../../utils/cssVariables';
 
 function sortByQualityAndLastActivity(ob1, ob2) {
   if (ob2.quality > ob1.quality) {
@@ -81,13 +81,7 @@ export const Home = () => {
       <p>Prospects à relancer :</p>
 
       {contacts.length ? (
-        contacts.map((c) => (
-          <li key={c.id}>
-            card {c.lastName} {c.firstName} {c.company} {c.quality}{' '}
-            {c.lastActivity} {c.diffTime.diffDays} {c.diffTime.diffMilliSeconds}
-            <Link to={`/contact/${c.id}`}>Détail</Link>
-          </li>
-        ))
+        contacts.map((c) => <ContactCard key={c.id} contact={c} />)
       ) : (
         <p>Pas de contact</p>
       )}

@@ -3,7 +3,8 @@ export const getDiffTime = (date1) => {
   const date2 = new Date();
 
   const diffMilliSeconds = Math.abs(date2 - date1);
-  const diffDays = Math.ceil(diffMilliSeconds / (1000 * 60 * 60 * 24));
+  // const diffDays = Math.ceil(diffMilliSeconds / (1000 * 60 * 60 * 24));
+  const diffDays = Math.floor(diffMilliSeconds / (1000 * 60 * 60 * 24));
 
   return {
     diffMilliSeconds,
