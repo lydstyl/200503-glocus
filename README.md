@@ -13,3 +13,7 @@ Runs the app in the development mode.
 
 - CSS
 - PWA register && test
+
+![Glocus prospection](https://github.com/lydstyl/200503-glocus/tree/master/public/glocus.png)
+
+![Glocus prospection](./public/glocus.png)
