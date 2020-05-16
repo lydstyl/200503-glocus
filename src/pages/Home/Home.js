@@ -38,6 +38,8 @@ export const Home = () => {
     return true;
   });
 
+  const prospectNb = contacts.length;
+
   contacts.map((c) => {
     // add diff time between now and last activity to contacts
     c.diffTime = getDiffTime(c.lastActivity);
@@ -64,15 +66,19 @@ export const Home = () => {
 
   return (
     <WithContainer title='Accueil'>
+      <p>Nombre de prospects de qualité supérieur à zéro : {prospectNb}</p>
+
+      <hr />
+
       <p>
         <Link to='/ajouter-ou-modifier-un-contact'>
           Ajouter un nouveau prospect
         </Link>
       </p>
 
-      <p>ou</p>
+      <hr />
 
-      <p>Liste à relancer :</p>
+      <p>Prospects à relancer :</p>
 
       {contacts.length ? (
         contacts.map((c) => (

@@ -34,13 +34,15 @@ export const Menu = styled.header`
     }
 
     p {
-      margin-left: 24px;
+      max-width: 100px;
+      margin-left: ${spaces.s60};
+      padding:${spaces.s6};
+      overflow: hidden;
+      /* overflow-wrap: break-word; */
       font-style: italic;
     }
   }
 
-  .top-nav {
-  }
 
   .menu {
     display: flex;

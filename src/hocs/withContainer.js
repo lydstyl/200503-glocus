@@ -9,9 +9,18 @@ const Main = styled.main`
   margin: ${spaces.s50} auto;
   padding: ${spaces.s40};
 
+  h2,
+  h3 {
+    font-family: 'Lobster', cursive;
+  }
+
   h2 {
     font-size: 2.4rem;
     margin-bottom: ${spaces.s80};
+  }
+
+  hr {
+    margin: ${spaces.s80} 0;
   }
 `;
 

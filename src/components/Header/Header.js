@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Menu } from './Menu';
 import { Nav } from '../Nav/Nav';
-import { colors } from '../../utils/cssVariables';
+import { spaces, colors } from '../../utils/cssVariables';
 
 const HeaderWrapper = styled.div`
   height: 70px;
@@ -51,7 +51,10 @@ export const Header = () => {
         <Menu className='top-nav'>
           <div className='logo-box'>
             <h1>Glocus</h1>
-            <p>Prospectez zen {email}</p>
+            <p>
+              {email && email.split('@')[0].split('').slice(0, 7).join('')}
+              ...
+            </p>
           </div>
           <input id='menu-toggle' type='checkbox' />
           <label className='menu-button-container' htmlFor='menu-toggle'>

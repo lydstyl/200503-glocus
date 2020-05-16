@@ -1,6 +1,6 @@
 const initialState = {
-  maxContactsToShow: 3,
-  showContactIfLastActivityOlderThen: 7,
+  maxContactsToShow: 9,
+  showContactIfLastActivityOlderThen: 0,
   maxActivitiesToShow: 5,
 };
 

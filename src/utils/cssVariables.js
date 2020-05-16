@@ -12,6 +12,7 @@ export const spaces = {
   s30: '10px',
   s40: '16px',
   s50: '20px',
+  s60: '24px',
   s80: '40px',
   s90: '70px',
 };

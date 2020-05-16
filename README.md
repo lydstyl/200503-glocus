@@ -11,12 +11,5 @@ Runs the app in the development mode.
 
 ### TODO
 
-- show donut before add a new contact link with number of contact quality 0,1 and 2
 - CSS
 - PWA register && test
-
-### Comments
-
-tester code sandbox voir si les modules fonctionnent
-
-firebase database vs firestore ?

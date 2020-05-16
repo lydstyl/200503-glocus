@@ -58,7 +58,7 @@ export const Settings = () => {
         value={showContactIfLastActivityOlderThen}
         label='Afficher uniquement ceux dont la dernière activité est vieille de x jour(s)'
         max='365'
-        min='1'
+        min='0'
       />
 
       <InputField
