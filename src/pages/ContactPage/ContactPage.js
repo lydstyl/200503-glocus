@@ -2,14 +2,14 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import QRCode from 'qrcode.react';
-// import styled from 'styled-components';
+import { exists } from '../../utils/exists';
 
 import {
   thunkDeleteContact,
   thunkAddActivity,
 } from '../../actions/contactActions';
 import WithContainer from '../../hocs/withContainer';
-
+import { StyledContactPage } from './StyledContactPage';
 import { ActivityItem } from '../../components/ActivityItem/ActivityItem';
 
 export const ContactPage = () => {
@@ -48,70 +48,95 @@ export const ContactPage = () => {
   };
 
   return (
-    <WithContainer
-      title='Détail du contact'
-      style={{ backgroundColor: 'lightgrey' }}
-    >
-      <h3>
-        {civility} {firstName} {lastName}, {company}, qualité {quality} sur 2
-      </h3>
+    <WithContainer title='Détail du contact'>
+      <StyledContactPage>
+        <div className='section contact'>
+          <div className='contact-header'>
+            <h3>
+              {quality === '2' && (
+                <span className='star' role='img' aria-label='best quality'>
+                  🎯
+                </span>
+              )}{' '}
+              {exists(company) && company.toUpperCase()} {civility}{' '}
+              {exists(firstName) && firstName}{' '}
+              {exists(lastName) && lastName.toUpperCase()}
+            </h3>
+          </div>
 
-      <p>
-        <a href={`tel:${phone}`}>{phone}</a>
+          <div className='contact-infos'>
+            <div className='left'>
+              {exists(phone) && (
+                <p>
+                  <a href={`tel:${phone}`}>{phone}</a>
+                </p>
+              )}
 
-        <a href={`mailto:${email}`}>{email}</a>
-      </p>
+              {exists(email) && (
+                <p>
+                  <a href={`mailto:${email}`}>{email}</a>
+                </p>
+              )}
 
-      <p>{description}</p>
+              {exists(linkedin) && (
+                <p>
+                  <a href={linkedin} target='_blank' rel='noopener noreferrer'>
+                    Site web
+                  </a>
+                </p>
+              )}
+            </div>
 
-      <p>
-        <a href={linkedin} target='_blank' rel='noopener noreferrer'>
-          Site web
-        </a>
-      </p>
+            <div className='right'>
+              <p>{description}</p>
+            </div>
+          </div>
 
-      <Link to={`/ajouter-ou-modifier-un-contact/${id}`}>
-        Modifier le contact
-      </Link>
+          <Link className='edit' to={`/ajouter-ou-modifier-un-contact/${id}`}>
+            Modifier le contact
+          </Link>
+        </div>
 
-      <h3>Activités</h3>
+        <div className='section  activities-box'>
+          <div className='activities-header'>
+            <h3>Activités</h3>
 
-      <button onClick={handleAddactivity}>Ajouter</button>
+            <button onClick={handleAddactivity}>Ajouter</button>
+          </div>
 
-      <p>
-        Au click ou au hover sur une activité faire apparaitre les boutons
-        Sauver et Supprimer
-      </p>
+          <div className='activities'>
+            {activities &&
+              activities.map((a) => (
+                <ActivityItem
+                  key={a.createdAt}
+                  contact={contact}
+                  activity={a}
+                ></ActivityItem>
+              ))}
+          </div>
+        </div>
 
-      <div className='activities'>
-        <p>/contacts/YxneS1L5CRBIYUmGiYp4/activities/TLXMvbuZqsWZulKIkvRF</p>
+        <div className='section contact-footer'>
+          <div className='qr-code-box'>
+            <QRCode
+              value={`BEGIN:VCARD
+            VERSION:4.0
+            FN:${`${civility} ${`${firstName && firstName} `}${lastName}`}
+            ${company && `ORG:${company}`}
+            ${phone && `TEL:${phone}`}
+            ${email && `EMAIL:${email}`}
+            ${linkedin && `URL:${linkedin}`}
+            END:VCARD`}
+            />
+          </div>
 
-        {activities &&
-          activities.map((a) => (
-            <ActivityItem
-              key={a.createdAt}
-              contact={contact}
-              activity={a}
-            ></ActivityItem>
-          ))}
-      </div>
+          <hr />
 
-      {/* <pre> {JSON.stringify(activities, null, 4)}</pre> */}
-
-      <QRCode
-        value={`BEGIN:VCARD
-VERSION:4.0
-FN:${`${civility} ${`${firstName && firstName} `}${lastName}`}
-${company && `ORG:${company}`}
-${phone && `TEL:${phone}`}
-${email && `EMAIL:${email}`}
-${linkedin && `URL:${linkedin}`}
-END:VCARD`}
-      />
-
-      {/* <pre>Debug : {JSON.stringify(contact, null, 4)}</pre> */}
-
-      <button onClick={handleDeleteContact}>Supprimer tout</button>
+          <div className='delete-all-box'>
+            <button onClick={handleDeleteContact}>Supprimer tout</button>
+          </div>
+        </div>
+      </StyledContactPage>
     </WithContainer>
   );
 };

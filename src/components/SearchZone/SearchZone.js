@@ -11,13 +11,7 @@ const getSuggestionValue = (suggestion) => suggestion.name;
 
 // Use your imagination to render suggestions.
 const renderSuggestion = (suggestion) => {
-  const {
-    id,
-    firstName,
-    lastName,
-    company,
-    //phone, email
-  } = suggestion.contact;
+  const { id } = suggestion.contact;
 
   return (
     <Link to={`/contact/${id}`}>

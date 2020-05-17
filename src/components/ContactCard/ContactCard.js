@@ -3,14 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { spaces, colors } from '../../utils/cssVariables';
-
-function exists(string) {
-  if (string.startsWith('pas de')) {
-    return false;
-  }
-
-  return true;
-}
+import { exists } from '../../utils/exists';
 
 const CardWrapper = styled.div`
   padding: ${spaces.s40};
@@ -22,7 +15,7 @@ const CardWrapper = styled.div`
   }
 
   .star {
-    font-size: 2rem;
+    font-size: 2rem; /* ★ */
   }
 `;
 
@@ -38,7 +31,11 @@ export const ContactCard = ({
     <CardWrapper>
       <Link to={`/contact/${id}`}>
         <p>
-          {quality === '2' && <span className='star'>★</span>}{' '}
+          {quality === '2' && (
+            <span className='star' role='img' aria-label='best quality'>
+              🎯
+            </span>
+          )}{' '}
           {exists(company) && company.toUpperCase()}
         </p>
 

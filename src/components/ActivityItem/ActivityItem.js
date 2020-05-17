@@ -40,8 +40,10 @@ export const ActivityItem = ({ contact, activity }) => {
         defaultValue={text}
       ></Activity>
 
-      <button onClick={handleSetActivity}>Enregistrer</button>
-      <button onClick={handleDeleteActivity}>Supprimer</button>
+      <div className='activity-buttons'>
+        <button onClick={handleSetActivity}>Enregistrer</button>
+        <button onClick={handleDeleteActivity}>Supprimer</button>
+      </div>
     </ActivityBox>
   );
 };

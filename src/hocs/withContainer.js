@@ -8,8 +8,7 @@ const Main = styled.main`
   margin: ${spaces.s50} auto;
   padding: ${spaces.s40};
 
-  h2,
-  h3 {
+  h2 {
     font-family: 'Lobster', cursive;
   }
 
