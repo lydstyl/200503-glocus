@@ -80,98 +80,108 @@ export const ContactForm = (props) => {
   return (
     <WithContainer title='Ajouter ou modifier un contact'>
       <Form>
-        <InputField
-          onChange={handleInputChange}
-          type='radio'
-          name='civility'
-          value='Mme'
-          label='Mme'
-          checked={id && contact.civility === 'Mme'}
-        />
-        <InputField
-          onChange={handleInputChange}
-          type='radio'
-          name='civility'
-          value='M.'
-          label='M.'
-          checked={id && contact.civility === 'M.'}
-        />
+        <section className='one'>
+          <div className='civility-box'>
+            <InputField
+              onChange={handleInputChange}
+              type='radio'
+              name='civility'
+              value='Mme'
+              label='Mme'
+              checked={id && contact.civility === 'Mme'}
+            />
+            <InputField
+              onChange={handleInputChange}
+              type='radio'
+              name='civility'
+              value='M.'
+              label='M.'
+              checked={id && contact.civility === 'M.'}
+            />
+          </div>
 
-        <InputField
-          onChange={handleInputChange}
-          name='lastName'
-          label='Nom de famille'
-          placeholder='DUPOND'
-          value={id && contact.lastName}
-        />
+          <InputField
+            onChange={handleInputChange}
+            name='lastName'
+            label='Nom'
+            placeholder='DUPOND'
+            value={id && contact.lastName}
+          />
 
-        <InputField
-          onChange={handleInputChange}
-          value={id && contact.firstName}
-          name='firstName'
-          label='Prénom'
-          placeholder='Jean'
-        />
+          <InputField
+            onChange={handleInputChange}
+            value={id && contact.firstName}
+            name='firstName'
+            label='Prénom'
+            placeholder='Jean'
+          />
 
-        <InputField
-          onChange={handleInputChange}
-          name='company'
-          label='Entreprise'
-          value={id && contact.company}
-        />
+          <InputField
+            onChange={handleInputChange}
+            name='company'
+            label='Entreprise'
+            value={id && contact.company}
+          />
 
-        <InputField
-          onChange={handleInputChange}
-          name='quality'
-          label='Qualité'
-          type='range'
-          min='0'
-          max='2'
-          step='1'
-          value={id && contact.quality}
-        />
+          <InputField
+            onChange={handleInputChange}
+            name='quality'
+            label='Qualité'
+            type='range'
+            min='0'
+            max='2'
+            step='1'
+            value={id && contact.quality}
+          />
+        </section>
 
-        <InputField
-          onChange={handleInputChange}
-          name='description'
-          label='description'
-          type='textarea'
-          rows='5'
-          placeholder='Informations importantes: potentiel fort; probablement le client idéal; etc.'
-          value={id && contact.description}
-          // defaultValue='Informations importantes: potentiel fort; probablement le client idéal; etc.'
-        />
+        <section className='two'>
+          <div className='left'>
+            <InputField
+              onChange={handleInputChange}
+              name='phone'
+              label='Téléphone'
+              type='tel'
+              pattern='\+?[0-9]{0,2}([0-9]\s?){10,}'
+              placeholder='01 23 45 67 89'
+              value={id && contact.phone}
+            />
 
-        <InputField
-          onChange={handleInputChange}
-          name='phone'
-          label='Téléphone'
-          type='tel'
-          pattern='\+?[0-9]{0,2}([0-9]\s?){10,}'
-          placeholder='01 23 45 67 89'
-          value={id && contact.phone}
-        />
+            <InputField
+              onChange={handleInputChange}
+              name='email'
+              label='E-mail'
+              type='email'
+              pattern='.+@.+\.[a-z]{2,3}'
+              //size='30'
+              placeholder='example@truc.com'
+              value={id && contact.email}
+            />
 
-        <InputField
-          onChange={handleInputChange}
-          name='email'
-          label='E-mail'
-          type='email'
-          pattern='.+@.+\.[a-z]{2,3}'
-          //size='30'
-          placeholder='example@truc.com'
-          value={id && contact.email}
-        />
+            <InputField
+              onChange={handleInputChange}
+              name='linkedin'
+              label='Site web'
+              type='url'
+              pattern='https://.*'
+              placeholder='https://example.com'
+              value={id && contact.linkedin}
+            />
+          </div>
 
-        <InputField
-          onChange={handleInputChange}
-          name='linkedin'
-          label='Site web'
-          type='url'
-          pattern='https://.*'
-          placeholder='https://example.com'
-          value={id && contact.linkedin}
-        />
+          <div className='right'>
+            <InputField
+              onChange={handleInputChange}
+              name='description'
+              label='description'
+              type='textarea'
+              rows='5'
+              placeholder='Informations importantes: potentiel fort; probablement le client idéal; etc.'
+              value={id && contact.description}
+              // defaultValue='Informations importantes: potentiel fort; probablement le client idéal; etc.'
+            />
+          </div>
+        </section>
 
         {id ? (
           <Button onClick={handleSetContact}>Modifier</Button>
