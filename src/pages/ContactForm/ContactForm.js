@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { spaces } from '../../utils/cssVariables';
 import { thunkAddContact, thunkSetContact } from '../../actions/contactActions';
 import WithContainer from '../../hocs/withContainer';
+import { Form } from './Form';
 import { InputField } from '../../components/InputField/InputField';
-
-const Form = styled.form``;
 
 const Button = styled.button`
   margin: ${spaces.s30} 0;
@@ -22,19 +21,6 @@ export const ContactForm = (props) => {
   const { id } = useParams();
 
   const contacts = useSelector((state) => state.contacts);
-
-  // const {
-  //   civility,
-  //   firstName,
-  //   lastName,
-  //   company,
-  //   quality,
-  //   phone,
-  //   email,
-  //   description,
-  //   linkedin,
-  //   activities,
-  // } = contact;
 
   const [contact, setContact] = useState(
     (id && contacts.filter((c) => c.id === id)[0]) || {
@@ -55,14 +41,6 @@ export const ContactForm = (props) => {
     evt.preventDefault();
 
     const form = document.querySelector('form');
-
-    // var isValid = form.reportValidity();
-
-    // //form.checkValidity();
-    // form.reportValidity(); // todo find why this is not working
-    // ChromeSamples.setStatus(
-    //   'The form ' + (isValid ? 'is' : 'is not') + ' valid.'
-    // );
 
     const contact = {};
 
