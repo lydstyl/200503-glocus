@@ -1,13 +1,11 @@
 import styled from 'styled-components';
-import {
-  spaces,
-  // , colors
-} from '../../utils/cssVariables';
+import { spaces, shadows, colors } from '../../utils/cssVariables';
 
 export const StyledContactPage = styled.div`
   .section {
     padding: ${spaces.s40};
-    background-color: lightgray;
+    background: ${colors.primaryLight};
+    ${shadows.s1};
   }
 
   .contact {
@@ -72,6 +70,10 @@ export const StyledContactPage = styled.div`
       display: flex;
       justify-content: space-between;
 
+      margin-bottom: ${spaces.s80};
+    }
+
+    .activities > div {
       margin-bottom: ${spaces.s80};
     }
 

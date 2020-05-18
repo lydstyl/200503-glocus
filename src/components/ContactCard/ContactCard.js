@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { spaces, colors } from '../../utils/cssVariables';
+import { spaces, colors, shadows } from '../../utils/cssVariables';
 import { exists } from '../../utils/exists';
 
 const CardWrapper = styled.div`
   padding: ${spaces.s40};
   background-color: ${colors.secondary};
   border: 1px solid;
+  ${shadows.s1};
 
   a {
     color: ${colors.textOnS};

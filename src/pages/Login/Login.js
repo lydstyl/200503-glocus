@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import { StyledLogin } from './StyledForm';
 import { InputField } from '../../components/InputField/InputField';
 
 import {
@@ -56,23 +57,25 @@ export const Login = () => {
 
   return (
     <WithContainer title='Login'>
-      <form>
+      <StyledLogin>
         <InputField name='email' label='E-mail' type='email' />
 
         <InputField name='password' label='Mot de passe' type='password' />
 
-        <button onClick={handleLogin}>Se connecter</button>
+        <div className='buttons'>
+          <button onClick={handleLogin}>Se connecter</button>
 
-        <span>ou</span>
-        <button onClick={handleCreateUserWithEmailAndPassword}>
-          Créer un compte
-        </button>
+          <span>ou</span>
+          <button onClick={handleCreateUserWithEmailAndPassword}>
+            Créer un compte
+          </button>
 
-        <span>ou</span>
-        <button onClick={handleSendPasswordResetEmail}>
-          J'ai oublié mon mot de passe
-        </button>
-      </form>
+          <span>ou</span>
+          <button onClick={handleSendPasswordResetEmail}>
+            J'ai oublié mon mot de passe
+          </button>
+        </div>
+      </StyledLogin>
     </WithContainer>
   );
 };

@@ -12,5 +12,4 @@ Runs the app in the development mode.
 
 ### TODO
 
-- CSS
 - PWA register && test

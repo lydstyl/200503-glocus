@@ -4,12 +4,13 @@ import styled from 'styled-components';
 
 import { Menu } from './Menu';
 import { Nav } from '../Nav/Nav';
-import { colors } from '../../utils/cssVariables';
+import { colors, shadows } from '../../utils/cssVariables';
 
 const HeaderWrapper = styled.div`
   height: 70px;
   background: linear-gradient(to left, ${colors.dark}, ${colors.primary});
   border-radius: 0;
+  ${shadows.s2};
 
   .menu-wrapper {
     max-width: 768px;
