@@ -77,18 +77,30 @@ export const StyledContactPage = styled.div`
 
     .activities {
       .activity-buttons {
-        transform: scaleY(0);
-        transform-origin: 50% 0;
-        transition: transform 1s ease;
-
-        button:first-child {
+        button {
+          width: 0;
+          transition: width 1s ease;
           margin-left: 0;
+
+          span {
+            visibility: hidden;
+          }
+
+          @keyframes cssAnimation {
+            to {
+              visibility: visible;
+            }
+          }
         }
       }
     }
 
-    .activities textarea:hover + .activity-buttons {
-      transform: scaleY(1);
+    .activities div:hover .activity-buttons button {
+      width: 100px;
+
+      span {
+        animation: cssAnimation 0s 1s forwards;
+      }
     }
   }
 

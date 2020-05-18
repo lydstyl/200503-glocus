@@ -7,8 +7,15 @@ import {
   thunkSetActivity,
 } from '../../actions/contactActions';
 
+import { spaces } from '../../utils/cssVariables';
+
 const ActivityBox = styled.div`
-  /* width: 100%; */
+  display: flex;
+  justify-content: space-between;
+
+  [name='activity'] {
+    margin-right: ${spaces.s40};
+  }
 `;
 
 const Activity = styled.textarea`
@@ -41,8 +48,12 @@ export const ActivityItem = ({ contact, activity }) => {
       ></Activity>
 
       <div className='activity-buttons'>
-        <button onClick={handleSetActivity}>Enregistrer</button>
-        <button onClick={handleDeleteActivity}>Supprimer</button>
+        <button onClick={handleSetActivity}>
+          <span className='button-text'>Enregistrer</span>
+        </button>
+        <button onClick={handleDeleteActivity}>
+          <span className='button-text'>Supprimer</span>
+        </button>
       </div>
     </ActivityBox>
   );
