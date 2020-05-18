@@ -120,13 +120,15 @@ export const ContactPage = () => {
           <div className='qr-code-box'>
             <QRCode
               value={`BEGIN:VCARD
-            VERSION:4.0
-            FN:${`${civility} ${`${firstName && firstName} `}${lastName}`}
-            ${company && `ORG:${company}`}
-            ${phone && `TEL:${phone}`}
-            ${email && `EMAIL:${email}`}
-            ${linkedin && `URL:${linkedin}`}
-            END:VCARD`}
+VERSION:4.0
+FN:${`${civility}${exists(firstName) && ' ' + firstName}${
+                exists(lastName) && ' ' + lastName.toUpperCase()
+              }`}
+${exists(company) && `ORG:${company.toUpperCase()}`}
+${exists(phone) && `TEL:${phone}`}
+${exists(email) && `EMAIL:${email}`}
+${exists(linkedin) && `URL:${linkedin}`}
+END:VCARD`}
             />
           </div>
 
