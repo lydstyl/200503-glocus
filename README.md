@@ -9,7 +9,3 @@ Webapp en construction [Glocus](https://glocus.netlify.app).
 ## `npm start`
 
 Runs the app in the development mode.
-
-### TODO
-
-- PWA register && test
