@@ -13,7 +13,13 @@ const ActivityBox = styled.div`
   display: flex;
   justify-content: space-between;
 
+  p {
+    transform: rotate(-90deg);
+    margin-left: ${spaces.s40};
+  }
+
   [name='activity'] {
+    margin-left: -70px;
     margin-right: ${spaces.s40};
   }
 `;
@@ -25,7 +31,7 @@ const Activity = styled.textarea`
 export const ActivityItem = ({ contact, activity }) => {
   const dispatch = useDispatch();
 
-  const { activityId, text } = activity;
+  const { activityId, text, editedAt } = activity;
 
   const handleDeleteActivity = () => {
     dispatch(thunkDeleteActivity(contact, activityId));
@@ -39,6 +45,7 @@ export const ActivityItem = ({ contact, activity }) => {
 
   return (
     <ActivityBox>
+      <p>{new Date(editedAt).toLocaleDateString('fr-FR')}</p>
       <Activity
         key={activityId}
         name='activity'
