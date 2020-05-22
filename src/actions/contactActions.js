@@ -26,7 +26,7 @@ export const thunkAddContact = (contact) => {
 };
 
 const addContact = (contact) => {
-  alert('Contact ajouté à la base de données.');
+  // alert('Contact ajouté à la base de données.');
   return { type: 'ADD_CONTACT', contact };
 };
 
