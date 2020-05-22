@@ -75,7 +75,7 @@ export const thunkDeleteContact = (id) => {
       .doc(id)
       .delete()
       .then(function () {
-        alert('Contact supprimé de la base de données.');
+        // alert('Contact supprimé de la base de données.');
 
         dispatch(deleteContact(id));
       })
@@ -101,7 +101,7 @@ export const thunkSetContact = (id, contact) => {
       .doc(id)
       .set(contact)
       .then(function () {
-        alert('Contact modifié dans la base de données.');
+        // alert('Contact modifié dans la base de données.');
 
         dispatch(setContact(id, contact));
       })

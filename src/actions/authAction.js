@@ -15,7 +15,7 @@ export const thunkOnAuthStateChanged = () => {
 
         // TODO set loading, dispatch and toast success and errors for every thunks
       } else {
-        alert("Il n'y a pas d'utilisateur connecté.");
+        // alert("Il n'y a pas d'utilisateur connecté.");
       }
     });
   };

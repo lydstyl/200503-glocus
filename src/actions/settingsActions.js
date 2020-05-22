@@ -41,7 +41,7 @@ export const thunkSetSettings = (settings) => {
       .doc(uid)
       .set(settings)
       .then(function () {
-        alert(`Setting enregistrée dans la base de données.`);
+        // alert(`Setting enregistrée dans la base de données.`);
 
         dispatch(setSettings(settings));
       })
