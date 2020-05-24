@@ -37,12 +37,20 @@ export const Login = () => {
   const handleCreateUserWithEmailAndPassword = (evt) => {
     evt.preventDefault();
 
-    dispatch(
-      thunkCreateUserWithEmailAndPassword(
-        document.querySelector('form [type=email]').value,
-        document.querySelector('form [type=password]').value
+    if (
+      window.confirm(
+        "Pour le bon fonctionnement de cette application, je déclare que j'ai plus de 15 ans et que je donne mon consentement pour stocker les informations de mes contacts sur une base de données."
       )
-    );
+    ) {
+      dispatch(
+        thunkCreateUserWithEmailAndPassword(
+          document.querySelector('form [type=email]').value,
+          document.querySelector('form [type=password]').value
+        )
+      );
+    } else {
+      alert('Dans ce cas, vous ne pouvez pas créer de compte.');
+    }
   };
 
   const handleSendPasswordResetEmail = (evt) => {
