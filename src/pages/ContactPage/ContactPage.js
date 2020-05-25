@@ -35,7 +35,15 @@ export const ContactPage = () => {
 
   let { activities } = contact;
 
-  activities = activities.slice(0, settings.maxActivitiesToShow);
+  activities = activities
+    .sort((a, b) => {
+      if (new Date(a.createdAt) > new Date(b.createdAt)) {
+        return -1;
+      } else {
+        return 1;
+      }
+    })
+    .slice(0, settings.maxActivitiesToShow);
 
   const handleDeleteContact = () => {
     dispatch(thunkDeleteContact(id));
