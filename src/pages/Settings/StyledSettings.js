@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const StyledSettings = styled.div`
   input {
     width: auto;
-    max-width: 44px;
+    max-width: 60px;
   }
 
   .button-box {
