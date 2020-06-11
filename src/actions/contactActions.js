@@ -10,16 +10,23 @@ export const thunkAddContact = (contact) => {
     contact.activities = [];
 
     firestore
-      .collection('contacts')
+      .collection("contacts")
       .add(contact)
       .then((docRef) => {
-        console.log('Document written with ID: ', docRef.id);
+        console.log("Document written with ID: ", docRef.id);
         contact.id = docRef.id;
 
         dispatch(addContact(contact));
+
+        // todo history.push(`/contact/${id}`);
+        // window.history.pushState(
+        //   { foo: "bar" },
+        //   "page 2",
+        //   `/contact/${contact.id}`
+        // );
       })
       .catch((error) => {
-        console.error('Error adding document: ', error);
+        console.error("Error adding document: ", error);
         //dispatch({ type: 'ADD_CONTACT_ERROR' }, err);
       });
   };
@@ -27,7 +34,7 @@ export const thunkAddContact = (contact) => {
 
 const addContact = (contact) => {
   // alert('Contact ajouté à la base de données.');
-  return { type: 'ADD_CONTACT', contact };
+  return { type: "ADD_CONTACT", contact };
 };
 
 export const thunkGetContact = () => {
@@ -41,8 +48,8 @@ export const thunkGetContact = () => {
     const contacts = [];
 
     firestore
-      .collection('contacts')
-      .where('userId', '==', uid)
+      .collection("contacts")
+      .where("userId", "==", uid)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -62,7 +69,7 @@ export const thunkGetContact = () => {
 
 const getContact = (contacts) => {
   // alert('Contacts récupérés de la base de données.');
-  return { type: 'GET_CONTACT', contacts };
+  return { type: "GET_CONTACT", contacts };
 };
 
 export const thunkDeleteContact = (id) => {
@@ -71,7 +78,7 @@ export const thunkDeleteContact = (id) => {
     const firestore = firebase.firestore();
 
     firestore
-      .collection('contacts')
+      .collection("contacts")
       .doc(id)
       .delete()
       .then(function () {
@@ -80,13 +87,13 @@ export const thunkDeleteContact = (id) => {
         dispatch(deleteContact(id));
       })
       .catch(function (error) {
-        console.error('Error removing document: ', error);
+        console.error("Error removing document: ", error);
       });
   };
 };
 
 const deleteContact = (id) => {
-  return { type: 'DELETE_CONTACT', id };
+  return { type: "DELETE_CONTACT", id };
 };
 
 export const thunkSetContact = (id, contact) => {
@@ -97,7 +104,7 @@ export const thunkSetContact = (id, contact) => {
     contact.editedAt = new Date().toString();
 
     firestore
-      .collection('contacts')
+      .collection("contacts")
       .doc(id)
       .set(contact)
       .then(function () {
@@ -106,13 +113,13 @@ export const thunkSetContact = (id, contact) => {
         dispatch(setContact(id, contact));
       })
       .catch(function (error) {
-        console.error('Error writing document: ', error);
+        console.error("Error writing document: ", error);
       });
   };
 };
 
 const setContact = (id, contact) => {
-  return { type: 'SET_CONTACT', id, contact };
+  return { type: "SET_CONTACT", id, contact };
 };
 
 // ACTIVITY
@@ -122,7 +129,7 @@ export const thunkAddActivity = (contact) => {
       activityId: Math.random() * 1000000000000000000,
       createdAt: new Date().toString(),
       editedAt: new Date().toString(),
-      text: 'Ajouter votre activité ici !',
+      text: "Ajouter votre activité ici !",
     };
 
     contact.activities = [...contact.activities, activity];

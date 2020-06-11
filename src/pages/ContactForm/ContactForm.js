@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import styled from "styled-components";
 
-import { spaces } from '../../utils/cssVariables';
-import { thunkAddContact, thunkSetContact } from '../../actions/contactActions';
-import WithContainer from '../../hocs/withContainer';
-import { Form } from './Form';
-import { InputField } from '../../components/InputField/InputField';
+import { spaces } from "../../utils/cssVariables";
+import { thunkAddContact, thunkSetContact } from "../../actions/contactActions";
+import WithContainer from "../../hocs/withContainer";
+import { Form } from "./Form";
+import { InputField } from "../../components/InputField/InputField";
 
 const Button = styled.button`
   margin: ${spaces.s30} 0;
@@ -24,42 +24,43 @@ export const ContactForm = (props) => {
 
   const [contact, setContact] = useState(
     (id && contacts.filter((c) => c.id === id)[0]) || {
-      civility: '',
-      firstName: '',
-      lastName: '',
-      company: '',
-      quality: '',
-      phone: '',
-      email: '',
-      description: '',
-      linkedin: '',
-      activities: '',
+      civility: "",
+      firstName: "",
+      lastName: "",
+      company: "",
+      quality: "",
+      phone: "",
+      email: "",
+      description: "",
+      linkedin: "",
+      activities: "",
     }
   );
 
   const handleAddContact = (evt) => {
     evt.preventDefault();
 
-    const form = document.querySelector('form');
+    const form = document.querySelector("form");
 
     const contact = {};
 
-    form.querySelectorAll('input').forEach((i) => {
+    form.querySelectorAll("input").forEach((i) => {
       contact[i.name] = i.value || `pas de ${i.name}`;
     });
 
     contact.quality =
-      document.querySelector('[name=quality]').value || 'pas de qualité';
+      document.querySelector("[name=quality]").value || "pas de qualité";
     contact.description =
-      document.querySelector('textarea').value || 'pas de description';
+      document.querySelector("textarea").value || "pas de description";
 
-    if (document.querySelector('[value=Mme]').checked) {
-      contact.civility = 'Mme';
+    if (document.querySelector("[value=Mme]").checked) {
+      contact.civility = "Mme";
     }
 
     dispatch(thunkAddContact(contact));
 
-    history.push('/');
+    // todo history.push(`/contact/${id}`);
+    history.push("/");
   };
 
   const handleSetContact = (evt) => {
@@ -74,109 +75,109 @@ export const ContactForm = (props) => {
     const { name, value } = e.target;
     setContact({ ...contact, [name]: value });
 
-    console.log('setC', contact, name, value);
+    console.log("setC", contact, name, value);
   };
 
   return (
-    <WithContainer title='Ajouter ou modifier un contact'>
+    <WithContainer title="Ajouter ou modifier un contact">
       <Form>
-        <section className='one'>
-          <div className='civility-box'>
+        <section className="one">
+          <div className="civility-box">
             <InputField
               onChange={handleInputChange}
-              type='radio'
-              name='civility'
-              value='Mme'
-              label='Mme'
-              checked={id && contact.civility === 'Mme'}
+              type="radio"
+              name="civility"
+              value="Mme"
+              label="Mme"
+              checked={id && contact.civility === "Mme"}
             />
             <InputField
               onChange={handleInputChange}
-              type='radio'
-              name='civility'
-              value='M.'
-              label='M.'
-              checked={id && contact.civility === 'M.'}
+              type="radio"
+              name="civility"
+              value="M."
+              label="M."
+              checked={id && contact.civility === "M."}
             />
           </div>
 
           <InputField
             onChange={handleInputChange}
-            name='lastName'
-            label='Nom'
-            placeholder='DUPOND'
+            name="lastName"
+            label="Nom"
+            placeholder="DUPOND"
             value={id && contact.lastName}
           />
 
           <InputField
             onChange={handleInputChange}
             value={id && contact.firstName}
-            name='firstName'
-            label='Prénom'
-            placeholder='Jean'
+            name="firstName"
+            label="Prénom"
+            placeholder="Jean"
           />
 
           <InputField
             onChange={handleInputChange}
-            name='company'
-            label='Entreprise'
+            name="company"
+            label="Entreprise"
             value={id && contact.company}
           />
 
           <InputField
             onChange={handleInputChange}
-            name='quality'
-            label='Qualité'
-            type='range'
-            min='0'
-            max='2'
-            step='1'
+            name="quality"
+            label="Qualité"
+            type="range"
+            min="0"
+            max="2"
+            step="1"
             value={id && contact.quality}
           />
         </section>
 
-        <section className='two'>
-          <div className='left'>
+        <section className="two">
+          <div className="left">
             <InputField
               onChange={handleInputChange}
-              name='phone'
-              label='Téléphone'
-              type='tel'
-              pattern='\+?[0-9]{0,2}([0-9]\s?){10,}'
-              placeholder='01 23 45 67 89'
+              name="phone"
+              label="Téléphone"
+              type="tel"
+              pattern="\+?[0-9]{0,2}([0-9]\s?){10,}"
+              placeholder="01 23 45 67 89"
               value={id && contact.phone}
             />
 
             <InputField
               onChange={handleInputChange}
-              name='email'
-              label='E-mail'
-              type='email'
-              pattern='.+@.+\.[a-z]{2,3}'
+              name="email"
+              label="E-mail"
+              type="email"
+              pattern=".+@.+\.[a-z]{2,3}"
               //size='30'
-              placeholder='example@truc.com'
+              placeholder="example@truc.com"
               value={id && contact.email}
             />
 
             <InputField
               onChange={handleInputChange}
-              name='linkedin'
-              label='Site web'
-              type='url'
-              pattern='https://.*'
-              placeholder='https://example.com'
+              name="linkedin"
+              label="Site web"
+              type="url"
+              pattern="https://.*"
+              placeholder="https://example.com"
               value={id && contact.linkedin}
             />
           </div>
 
-          <div className='right'>
+          <div className="right">
             <InputField
               onChange={handleInputChange}
-              name='description'
-              label='description'
-              type='textarea'
-              rows='5'
-              placeholder='Informations importantes: potentiel fort; probablement le client idéal; etc.'
+              name="description"
+              label="description"
+              type="textarea"
+              rows="5"
+              placeholder="Informations importantes: potentiel fort; probablement le client idéal; etc."
               value={id && contact.description}
               // defaultValue='Informations importantes: potentiel fort; probablement le client idéal; etc.'
             />
