@@ -1,5 +1,5 @@
 // CONTACT
-export const thunkAddContact = (contact) => {
+export const thunkAddContact = (contact, history) => {
   return (dispatch, getState, getFirebase) => {
     const firebase = getFirebase();
     const firestore = firebase.firestore();
@@ -18,12 +18,7 @@ export const thunkAddContact = (contact) => {
 
         dispatch(addContact(contact));
 
-        // todo history.push(`/contact/${id}`);
-        // window.history.pushState(
-        //   { foo: "bar" },
-        //   "page 2",
-        //   `/contact/${contact.id}`
-        // );
+        history.push(`/contact/${contact.id}`);
       })
       .catch((error) => {
         console.error("Error adding document: ", error);

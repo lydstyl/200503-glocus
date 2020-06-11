@@ -57,10 +57,7 @@ export const ContactForm = (props) => {
       contact.civility = "Mme";
     }
 
-    dispatch(thunkAddContact(contact));
-
-    // todo history.push(`/contact/${id}`);
-    history.push("/");
+    dispatch(thunkAddContact(contact, history));
   };
 
   const handleSetContact = (evt) => {
