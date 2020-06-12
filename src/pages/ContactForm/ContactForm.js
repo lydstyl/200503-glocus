@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { spaces } from "../../utils/cssVariables";
+import { thunkSetSettingsCategories } from "../../actions/settingsActions";
 import { thunkAddContact, thunkSetContact } from "../../actions/contactActions";
 import WithContainer from "../../hocs/withContainer";
 import { Form } from "./Form";
@@ -57,11 +58,15 @@ export const ContactForm = (props) => {
       contact.civility = "Mme";
     }
 
+    dispatch(thunkSetSettingsCategories(contact.category));
+
     dispatch(thunkAddContact(contact, history));
   };
 
   const handleSetContact = (evt) => {
     evt.preventDefault();
+
+    dispatch(thunkSetSettingsCategories(contact.category));
 
     dispatch(thunkSetContact(id, contact));
 
@@ -69,10 +74,19 @@ export const ContactForm = (props) => {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setContact({ ...contact, [name]: value });
+    let { name, value } = e.target;
 
-    console.log("setC", contact, name, value);
+    value = value.trim();
+
+    if (name === "lastName" || name === "company") {
+      value = value.toUpperCase();
+    }
+
+    if (name === "category" || name === "email") {
+      value = value.toLowerCase();
+    }
+
+    setContact({ ...contact, [name]: value });
   };
 
   return (
@@ -130,6 +144,13 @@ export const ContactForm = (props) => {
             max="2"
             step="1"
             value={id && contact.quality}
+          />
+
+          <InputField
+            onChange={handleInputChange}
+            name="category"
+            label="Catégorie"
+            value={id && contact.category}
           />
         </section>
 
