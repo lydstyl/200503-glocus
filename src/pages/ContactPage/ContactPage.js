@@ -1,16 +1,16 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams, useHistory } from 'react-router-dom';
-import QRCode from 'qrcode.react';
-import { exists } from '../../utils/exists';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams, useHistory } from "react-router-dom";
+import QRCode from "qrcode.react";
+import { exists } from "../../utils/exists";
 
 import {
   thunkDeleteContact,
   thunkAddActivity,
-} from '../../actions/contactActions';
-import WithContainer from '../../hocs/withContainer';
-import { StyledContactPage } from './StyledContactPage';
-import { ActivityItem } from '../../components/ActivityItem/ActivityItem';
+} from "../../actions/contactActions";
+import WithContainer from "../../hocs/withContainer";
+import { StyledContactPage } from "./StyledContactPage";
+import { ActivityItem } from "../../components/ActivityItem/ActivityItem";
 
 export const ContactPage = () => {
   const dispatch = useDispatch();
@@ -31,6 +31,7 @@ export const ContactPage = () => {
     email,
     description,
     linkedin,
+    category,
   } = contact;
 
   let { activities } = contact;
@@ -48,7 +49,7 @@ export const ContactPage = () => {
   const handleDeleteContact = () => {
     dispatch(thunkDeleteContact(id));
 
-    history.push('/');
+    history.push("/");
   };
 
   const handleAddactivity = () => {
@@ -56,24 +57,25 @@ export const ContactPage = () => {
   };
 
   return (
-    <WithContainer title='Détail du contact'>
+    <WithContainer title="Détail du contact">
       <StyledContactPage>
-        <div className='section contact'>
-          <div className='contact-header'>
+        <div className="section contact">
+          <div className="contact-header">
             <h3>
-              {quality === '2' && (
-                <span className='star' role='img' aria-label='best quality'>
+              {quality === "2" && (
+                <span className="star" role="img" aria-label="best quality">
                   🎯
                 </span>
-              )}{' '}
-              {exists(company) && company.toUpperCase()} {civility}{' '}
-              {exists(firstName) && firstName}{' '}
+              )}{" "}
+              {exists(company) && company.toUpperCase()} {civility}{" "}
+              {exists(firstName) && firstName}{" "}
               {exists(lastName) && lastName.toUpperCase()}
             </h3>
+            <div className="category">{category}</div>
           </div>
 
-          <div className='contact-infos'>
-            <div className='left'>
+          <div className="contact-infos">
+            <div className="left">
               {exists(phone) && (
                 <p>
                   <a href={`tel:${phone}`}>{phone}</a>
@@ -88,31 +90,31 @@ export const ContactPage = () => {
 
               {exists(linkedin) && (
                 <p>
-                  <a href={linkedin} target='_blank' rel='noopener noreferrer'>
+                  <a href={linkedin} target="_blank" rel="noopener noreferrer">
                     Site web
                   </a>
                 </p>
               )}
             </div>
 
-            <div className='right'>
+            <div className="right">
               <p>{description}</p>
             </div>
           </div>
 
-          <Link className='edit' to={`/ajouter-ou-modifier-un-contact/${id}`}>
+          <Link className="edit" to={`/ajouter-ou-modifier-un-contact/${id}`}>
             Modifier le contact
           </Link>
         </div>
 
-        <div className='section  activities-box'>
-          <div className='activities-header'>
+        <div className="section  activities-box">
+          <div className="activities-header">
             <h3>Activités</h3>
 
             <button onClick={handleAddactivity}>Ajouter</button>
           </div>
 
-          <div className='activities'>
+          <div className="activities">
             {activities &&
               activities.map((a) => (
                 <ActivityItem
@@ -124,13 +126,13 @@ export const ContactPage = () => {
           </div>
         </div>
 
-        <div className='section contact-footer'>
-          <div className='qr-code-box'>
+        <div className="section contact-footer">
+          <div className="qr-code-box">
             <QRCode
               value={`BEGIN:VCARD
 VERSION:4.0
-FN:${`${civility}${exists(firstName) && ' ' + firstName}${
-                exists(lastName) && ' ' + lastName.toUpperCase()
+FN:${`${civility}${exists(firstName) && " " + firstName}${
+                exists(lastName) && " " + lastName.toUpperCase()
               }`}
 ${exists(company) && `ORG:${company.toUpperCase()}`}
 ${exists(phone) && `TEL:${phone}`}
@@ -142,7 +144,7 @@ END:VCARD`}
 
           <hr />
 
-          <div className='delete-all-box'>
+          <div className="delete-all-box">
             <button onClick={handleDeleteContact}>Supprimer tout</button>
           </div>
         </div>
