@@ -32,12 +32,14 @@ export const Home = () => {
   contacts = contacts.filter((c) => {
     // only show the settings category contacts
     // eslint-disable-next-line
+
     if (
-      c.category === settings.category ||
       !c.category ||
-      !c.category === "pas de category"
-    )
+      c.category === "pas de category" ||
+      c.category === settings.category
+    ) {
       return true;
+    }
     return false;
   });
 
