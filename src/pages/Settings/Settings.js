@@ -44,9 +44,17 @@ export const Settings = () => {
       <StyledSettings>
         {settings.categories && (
           <select onChange={handleInputChange} name="category">
-            {settings.categories.map((c) => (
-              <option value={c}>{c}</option>
-            ))}
+            {settings.categories.map((c) => {
+              if (c === settings.category) {
+                return (
+                  <option selected value={c}>
+                    {c}
+                  </option>
+                );
+              } else {
+                return <option value={c}>{c}</option>;
+              }
+            })}
           </select>
         )}
 
