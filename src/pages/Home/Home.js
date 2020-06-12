@@ -1,11 +1,11 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-import { getDiffTime } from '../../utils/getDiffTime';
-import WithContainer from '../../hocs/withContainer';
-import { StyledHome, ContactsWrapper } from './StyledHome';
-import { ContactCard } from '../../components/ContactCard/ContactCard';
+import { getDiffTime } from "../../utils/getDiffTime";
+import WithContainer from "../../hocs/withContainer";
+import { StyledHome, ContactsWrapper } from "./StyledHome";
+import { ContactCard } from "../../components/ContactCard/ContactCard";
 
 function sortByQualityAndLastActivity(ob1, ob2) {
   if (ob2.quality > ob1.quality) {
@@ -28,6 +28,18 @@ function sortByQualityAndLastActivity(ob1, ob2) {
 export const Home = () => {
   const settings = useSelector((state) => state.settings);
   let contacts = useSelector((state) => state.contacts);
+
+  contacts = contacts.filter((c) => {
+    // only show the settings category contacts
+    // eslint-disable-next-line
+    if (
+      c.category === settings.category ||
+      !c.category ||
+      !c.category === "pas de category"
+    )
+      return true;
+    return false;
+  });
 
   contacts = contacts.filter((c) => {
     // don't show bad quality contacts
@@ -64,17 +76,17 @@ export const Home = () => {
   contacts = contacts.slice(0, settings.maxContactsToShow);
 
   return (
-    <WithContainer title='Accueil'>
+    <WithContainer title="Accueil">
       <StyledHome>
         <p>Nombre de prospects de qualité : {prospectNb}</p>
 
-        <Link className='add-contact' to='/ajouter-ou-modifier-un-contact'>
+        <Link className="add-contact" to="/ajouter-ou-modifier-un-contact">
           Ajouter un nouveau prospect
         </Link>
 
         <hr />
 
-        <div className='contact-to-work'>
+        <div className="contact-to-work">
           <p>Prospects à relancer :</p>
 
           <ContactsWrapper>

@@ -42,6 +42,14 @@ export const Settings = () => {
   return (
     <WithContainer title="Paramètre d'affichage">
       <StyledSettings>
+        {settings.categories && (
+          <select onChange={handleInputChange} name="category">
+            {settings.categories.map((c) => (
+              <option value={c}>{c}</option>
+            ))}
+          </select>
+        )}
+
         <InputField
           onChange={handleInputChange}
           type="number"
