@@ -48,8 +48,6 @@ export const thunkGetContact = () => {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          console.log(`${doc.id} => ${doc.data()}`, doc.data());
-
           const contact = { id: doc.id, ...doc.data() };
 
           contacts.push(contact);

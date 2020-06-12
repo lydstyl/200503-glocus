@@ -1,5 +1,5 @@
-import { thunkGetContact } from './contactActions';
-import { thunkGetSettings } from './settingsActions';
+import { thunkGetContact } from "./contactActions";
+import { thunkGetSettings } from "./settingsActions";
 
 export const thunkOnAuthStateChanged = () => {
   // return (dispatch, getState, { getFirebase }) => {
@@ -8,8 +8,6 @@ export const thunkOnAuthStateChanged = () => {
 
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        console.log(`user =>`, user);
-
         dispatch(thunkGetContact());
         dispatch(thunkGetSettings());
 
@@ -36,7 +34,7 @@ export const thunkSignOut = () => {
 };
 
 const signOut = () => {
-  return { type: 'SIGN_OUT' };
+  return { type: "SIGN_OUT" };
 };
 
 export const thunkSignInWithEmailAndPassword = (email, password) => {
@@ -55,8 +53,8 @@ export const thunkSignInWithEmailAndPassword = (email, password) => {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        if (errorCode === 'auth/wrong-password') {
-          alert('Wrong password.');
+        if (errorCode === "auth/wrong-password") {
+          alert("Wrong password.");
         } else {
           alert(errorMessage);
         }
@@ -89,8 +87,6 @@ export const thunkCreateUserWithEmailAndPassword = (email, password) => {
 };
 
 export const thunkSendPasswordResetEmail = (email) => {
-  console.log('xxx', email);
-
   return (dispatch, getState, getFirebase) => {
     const firebase = getFirebase();
 
