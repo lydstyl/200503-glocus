@@ -16,6 +16,8 @@ export const Settings = () => {
     showContactIfLastActivityOlderThen:
       settings.showContactIfLastActivityOlderThen,
     maxActivitiesToShow: settings.maxActivitiesToShow,
+    categories: settings.categories || null,
+    category: settings.category || null,
   });
 
   const {
@@ -42,10 +44,10 @@ export const Settings = () => {
   return (
     <WithContainer title="Paramètre d'affichage">
       <StyledSettings>
-        {settings.categories && (
+        {state.categories && (
           <select onChange={handleInputChange} name="category">
-            {settings.categories.map((c) => {
-              if (c === settings.category) {
+            {state.categories.map((c) => {
+              if (c === state.category) {
                 return (
                   <option selected value={c}>
                     {c}
