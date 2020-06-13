@@ -44,23 +44,14 @@ export const Settings = () => {
   return (
     <WithContainer title="Paramètre d'affichage">
       <StyledSettings>
-        <select onChange={handleInputChange} name="category">
-          <option selected value="pas de category">
-            pas de categorie
-          </option>
-          {state.categories &&
-            state.categories.map((c) => {
-              if (c === state.category) {
-                return (
-                  <option selected value={c}>
-                    {c}
-                  </option>
-                );
-              } else {
-                return <option value={c}>{c}</option>;
-              }
-            })}
-        </select>
+        <InputField
+          onChange={handleInputChange}
+          type="select"
+          name="category"
+          options={state.categories}
+          selected={state.category}
+          label={"Catégorie à afficher sur la page d'accueil"}
+        />
 
         <InputField
           onChange={handleInputChange}

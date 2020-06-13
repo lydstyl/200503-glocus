@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { spaces } from '../../utils/cssVariables';
+import { spaces, colors } from "../../utils/cssVariables";
 
 const Field = styled.div`
   display: flex;
@@ -20,10 +20,49 @@ const Field = styled.div`
   textarea {
     padding: ${spaces.s30};
   }
+
+  select {
+    background-color: ${colors.textOnP};
+    border-width: 2px;
+  }
 `;
 
-export const InputField = ({ name, label, type, ...other }) => {
-  if (type === 'textarea') {
+export const InputField = ({
+  name,
+  label,
+  type,
+  selected,
+  options,
+  ...other
+}) => {
+  if (type === "select") {
+    return (
+      <Field>
+        <label htmlFor={name}>{label}</label>
+
+        <select id={name} name={name} {...other}>
+          <option selected value="pas de category">
+            pas de categorie
+          </option>
+
+          {options &&
+            options.map((o) => {
+              if (o === selected) {
+                return (
+                  <option selected value={o}>
+                    {o}
+                  </option>
+                );
+              } else {
+                return <option value={o}>{o}</option>;
+              }
+            })}
+        </select>
+      </Field>
+    );
+  }
+
+  if (type === "textarea") {
     return (
       <Field>
         <textarea
