@@ -1,9 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
-import { spaces, colors, shadows } from '../../utils/cssVariables';
-import { exists } from '../../utils/exists';
+import { ImTarget } from 'react-icons/im'
+
+import { spaces, colors, shadows } from '../../utils/cssVariables'
+import { exists } from '../../utils/exists'
 
 const CardWrapper = styled.div`
   padding: ${spaces.s40};
@@ -18,14 +20,14 @@ const CardWrapper = styled.div`
   .star {
     font-size: 2rem; /* ★ */
   }
-`;
+`
 
 export const ContactCard = ({
   contact: { id, quality, company, civility, lastName, firstName, diffTime },
 }) => {
-  let diffDays = 0;
+  let diffDays = 0
   if (diffTime) {
-    diffDays = diffTime.diffDays;
+    diffDays = diffTime.diffDays
   }
 
   return (
@@ -34,7 +36,7 @@ export const ContactCard = ({
         <p>
           {quality === '2' && (
             <span className='star' role='img' aria-label='best quality'>
-              🎯
+              <ImTarget />
             </span>
           )}{' '}
           {exists(company) && company.toUpperCase()}
@@ -48,5 +50,5 @@ export const ContactCard = ({
         {diffDays * 0 === 0 && <p>Activité depuis {diffDays} jour(s).</p>}
       </Link>
     </CardWrapper>
-  );
-};
+  )
+}
