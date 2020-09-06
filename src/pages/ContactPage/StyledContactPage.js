@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { spaces, shadows, colors } from '../../utils/cssVariables';
+import styled from 'styled-components'
+import { spaces, shadows, colors } from '../../utils/cssVariables'
 
 export const StyledContactPage = styled.div`
   .section {
@@ -81,7 +81,7 @@ export const StyledContactPage = styled.div`
       .activity-buttons {
         button {
           width: 0;
-          transition: width 1s ease;
+          transition: width 0.1s ease;
           margin-left: 0;
 
           span {
@@ -97,11 +97,11 @@ export const StyledContactPage = styled.div`
       }
     }
 
-    .activities div:hover .activity-buttons button {
+    .activities div .activity-buttons:hover button {
       width: 100px;
 
       span {
-        animation: cssAnimation 0s 1s forwards;
+        animation: cssAnimation 0s 0.1s forwards;
       }
     }
   }
@@ -116,4 +116,4 @@ export const StyledContactPage = styled.div`
       text-align: center;
     }
   }
-`;
+`
